@@ -20,6 +20,8 @@
   4) Add password column --- Completed
   5) Add email column --- Completed
   6) Also try to add image of profile:
+    #The main thing is how to delete and upload files on the server
+    #For the adding image to the data base we can use URL_for("path")
     1) How to add image to profile page
     2) How to upload images to profile page
     3) How to change it:
