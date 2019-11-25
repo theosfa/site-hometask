@@ -11,6 +11,12 @@
   3) Add user-name column
   4) Add password column
   5) Add email column
+  6) Also try to add image of profile:
+    1) How to add image to profile page
+    2) How to upload images to profile page
+    3) How to change it:
+      1) Delete previous image
+      2) Save new image
 --------------------------------------------------------------------------------
 3) Create lessons table for data base:
   1) Add weekday column
