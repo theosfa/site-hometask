@@ -1,0 +1,21 @@
+---------------Site for accessing for the schedule and home tasks---------------
+-----What to do:-----
+1) Create site architecture:
+  1) Create profile page
+  2) Create profile-edit page
+  3) Create schedule page
+--------------------------------------------------------------------------------
+2) Create users table for data base:
+  1) Add name column
+  2) Add surname column
+  3) Add user-name column
+  4) Add password column
+  5) Add email column
+--------------------------------------------------------------------------------
+3) Create lessons table for data base:
+  1) Add weekday column
+  2) Add date column + deal with how to use date format and know what
+    date is today => what is week day is today to automatically switch
+    studying weeks cause they're 4 weeks in our schedule
+  3) Add columns for time, lesson, home task and user name that adds home task
+--------------------------------------------------------------------------------

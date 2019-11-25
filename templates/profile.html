@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Profile Page{% endblock %}
+{% block content %}
+<h1>Your profile</h1>
+<h2>User name:</h2>
+<h3>{{ values.name }}</h3>
+{%if values.email %}
+  <h2>User email:</h2>
+  <h3>{{ values.email }}</h3>
+{% else %}
+  <h2>You don't have an email</h2>
+{% endif %}
+{% endblock %}

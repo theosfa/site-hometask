@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Logging Page{% endblock %}
+{% block content %}
+<h1>Logging:</h1>
+{% if not logging %}
+  <p>Failed to loggin</p>
+  <p>User name or password is incorrect</p>
+{% endif %}
+<form method="post">
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">User name</label>
+    <input type="text" name="usrname" placeholder="Enter username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="width:200px">
+    <small id="emailHelp" class="form-text text-muted">Your user name will be shown on the navigation bar.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="passwd" class="form-control" id="exampleInputPassword1" placeholder="Password" style="width:200px">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+<a href="/sign_up">Click here if you don't have an account</a>
+{% endblock %}

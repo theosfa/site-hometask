@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Logging Page{% endblock %}
+{% block content %}
+<h1>Signing up:</h1>
+{% if not sign_up %}
+  <p>Failed to signing up</p>
+  <p>Such user exist</p>
+{% endif %}
+<form method="post">
+
+  <div class="form-group">
+    <div class="form-group">
+      <label for="exampleInputName1">User name</label>
+      <input type="text" name="usrname" class="form-control" id="exampleInputName1" placeholder="Username" style="width:200px">
+    </div>
+    <label for="exampleInputEmail1">Email</label>
+    <input type="text" name="email" placeholder="Enter email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="width:200px">
+    <small id="emailHelp" class="form-text text-muted">Your email won't be shown on another pages.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="passwd" class="form-control" id="exampleInputPassword1" placeholder="Password" style="width:200px">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+<a href="/logging">Click here if you have an account</a>
+{% endblock %}
