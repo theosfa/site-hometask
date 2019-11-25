@@ -3,8 +3,8 @@
 {% block content %}
 <h1>Signing up:</h1>
 {% if not sign_up %}
-  <p>Failed to signing up</p>
-  <p>Such user exist</p>
+  <p style="color: red">Failed to signing up</p>
+  <p style="color: red">Such user exist</p>
 {% endif %}
 <form method="post">
 
@@ -24,5 +24,5 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
-<a href="/logging">Click here if you have an account</a>
+<a href="/logging" class="btn btn-outline-secondary" role="button">Click here if you have an account</a>
 {% endblock %}

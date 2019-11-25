@@ -6,7 +6,7 @@ from init_lessons.lessons import lessons
 app = Flask(__name__)
 app.register_blueprint(lessons,url_prefix="/init")
 app.secret_key = "LIHBlksdbv7siubkjb7879tn8t5bnBHGbuy5u98u6fGCGFc4d7fCI7gckhgvR58"
-app.permanent_session_lifetime = timedelta(years = 1)
+app.permanent_session_lifetime = timedelta(days = 365)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///main.sqlite3"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -15,14 +15,18 @@ db = SQLAlchemy(app)
 
 class users(db.Model):
     _id = db.Column("id", db.Integer, primary_key=True)
-    name = db.Column(db.String(100))
+    user = db.Column(db.String(100))
     password = db.Column(db.String(100))
     email = db.Column(db.String(100))
+    name = db.Column(db.String(100))
+    surname = db.Column(db.String(100))
 
-    def __init__(self, name, password, email):
-        self.name = name
+    def __init__(self, user, password, email, name, surname):
+        self.user = user
         self.email = email
         self.password = password
+        self.name = name
+        self.surname = surname
 
 class lessons(db.Model):
     _id = db.Column("id", db.Integer, primary_key=True)
@@ -122,13 +126,13 @@ def sign_up():
         user = request.form["usrname"]
         passwd = request.form["passwd"]
         email = request.form["email"]
-        found_user = users.query.filter_by(name=user).first()
+        name = request.form["name"]
+        surname = request.form["surname"]
+        found_user = users.query.filter_by(user=user).first()
         if found_user:
             return render_template("sign_up.html",sign_up = False, act_home = "", act_feat = "", act_log = "active", page_info = "You are on the sign up page", logged = session["logged"], sign = "Sign in", sign_url = "sign_up")
-        usr = users(user, passwd, email)
-        numb = numbers(user)
+        usr = users(user, passwd, email, name, surname)
         db.session.add(usr)
-        db.session.add(numb)
         db.session.commit()
         session["user"] = user
         session["password"] = passwd
