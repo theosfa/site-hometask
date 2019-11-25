@@ -34,3 +34,5 @@
   3) Add columns for time, lesson, home task
     and user name that adds home task --- Completed
 --------------------------------------------------------------------------------
+4) Implement the script of changing weeks.
+--------------------------------------------------------------------------------

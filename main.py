@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from datetime import timedelta
 from flask_sqlalchemy import SQLAlchemy
-from init_lessons.lessons import lessons
+from init_weeks.weeks import weeks
 
 app = Flask(__name__)
 app.register_blueprint(lessons,url_prefix="/init")
