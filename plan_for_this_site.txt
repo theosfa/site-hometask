@@ -1,17 +1,22 @@
 ---------------Site for accessing for the schedule and home tasks---------------
 -----What to do:-----
 1) Create site architecture:
+  0) Edit pages for nice view
+    1) Profile page
+    2) Profile-edit page
+      1) Add possibility to add image to the profile page
+    3) Sign in page --- In the process
+    4) Sign up page
+    5) Schedule page
+    6) Enter home task page
+    7) Home task edit page
   1) Create profile page --- $ Completed $
   2) Create profile-edit page
   3) Create sign in page --- $ Completed $
   4) Create sign up page --- $ Completed $
   5) Create schedule page
-  6) Edit pages for nice view
-    1) Profile page
-    2) Profile-edit page
-    3) Sign in page --- In the process
-    4) Sign up page
-    5) Schedule page
+  6) Create enter home task page
+  7) Create home task edit page
 --------------------------------------------------------------------------------
 2) Create users table for data base:
   1) Add name column --- $ Completed $
@@ -36,5 +41,11 @@
   3) Add columns for time, lesson, home task
     and user name that adds home task --- $ Completed $
 --------------------------------------------------------------------------------
-4) Implement the script of changing weeks.
+4) Implement the script of adding of semester:
+  Add script that creates semester with date and schedule but without home task.
+  This script can be launched only by admin by site.
+--------------------------------------------------------------------------------
+5) Improve system of signing up:
+  1) Checking length of nick name
+  2) Checking if field is empty
 --------------------------------------------------------------------------------

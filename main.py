@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from init_weeks.weeks import weeks
 
 app = Flask(__name__)
-app.register_blueprint(lessons,url_prefix="/init")
+app.register_blueprint(weeks,url_prefix="/init")
 app.secret_key = "LIHBlksdbv7siubkjb7879tn8t5bnBHGbuy5u98u6fGCGFc4d7fCI7gckhgvR58"
 app.permanent_session_lifetime = timedelta(days = 365)
 
