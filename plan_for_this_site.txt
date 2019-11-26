@@ -4,7 +4,7 @@
   0) Edit pages for nice view
     1) Profile page
     2) Profile-edit page
-      1) Add possibility to add image to the profile page
+      1) Add possibility to add image to the profile page when it possible
     3) Sign in page --- In the process
     4) Sign up page
     5) Schedule page
