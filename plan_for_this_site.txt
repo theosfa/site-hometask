@@ -51,4 +51,3 @@
 --------------------------------------------------------------------------------
 6) Implement the script of editing home task
   1) Users can change it only once a day
-  2)
