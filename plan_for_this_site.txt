@@ -49,3 +49,6 @@
   1) Checking length of nick name
   2) Checking if field is empty
 --------------------------------------------------------------------------------
+6) Implement the script of editing home task
+  1) Users can change it only once a day
+  2)
