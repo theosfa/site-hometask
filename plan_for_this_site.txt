@@ -6,7 +6,7 @@
     2) Profile-edit page
       1) Add possibility to add image to the profile page when it possible
       2) Add possibility to change name, surname, email
-    3) Sign in page --- In the process
+    3) Sign in page --- $ Completed $
     4) Sign up page --- In the process
     5) Schedule page
     6) Enter home task page

@@ -199,18 +199,23 @@ def profile():
         session["logging"] = False
         session["user"] = "no_user"
         session["logged"] = False
+    if session["user"] == "no_user":
+        return redirect(url_for("logging"))
     session["act_home"] = ""
     session["act_feat"] = ""
     session["act_log"] = "active"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the profile page"
-    if session["user"] == "no_user":
-        return redirect(url_for("logging"))
-    else:
-        return render_template("profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session)
+    return render_template("profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session)
 
 @app.route("/profile/edit")
 def edit_profile():
+    if not "user" in session:
+        session["logging"] = False
+        session["user"] = "no_user"
+        session["logged"] = False
+    if session["user"] == "no_user":
+        return redirect(url_for("logging"))
     session["act_home"] = ""
     session["act_feat"] = ""
     session["act_log"] = "active"

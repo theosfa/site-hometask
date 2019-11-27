@@ -1,6 +1,7 @@
 {% extends "base.html" %}
-{% block title %}Logging Page{% endblock %}
+{% block title %}Sign up page{% endblock %}
 {% block content %}
+<div style="margin-top:30px; text-align:center">
 <h1>Signing up:</h1>
 {% if not sign_up %}
   <p style="color: red">Failed to signing up</p>
@@ -8,9 +9,9 @@
 {% endif %}
 <form method="post">
   <div class="form-group">
-    <div class="form-group">
+    <div class="form-group" align="ceter">
       <label for="exampleInputName1">User name</label>
-      <input type="text" name="usrname" class="form-control" id="exampleInputName1" placeholder="Username" style="width:200px">
+      <input type="text" name="usrname" class="form-control" id="exampleInputName1" placeholder="Username" style="width:200px;display:block" align="center">
     </div>
     <label for="exampleInputEmail1">Email</label>
     <input type="text" name="email" placeholder="Enter email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="width:200px">
@@ -23,5 +24,6 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 
 </form>
-<a href="/logging" class="btn btn-outline-secondary" role="button">Click here if you have an account</a>
+<a href="/logging" class="btn btn-outline-secondary" role="button" style="margin:5px">Click here if you have an account</a>
+</div>
 {% endblock %}
