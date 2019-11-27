@@ -8,7 +8,7 @@ app.register_blueprint(weeks,url_prefix="/init")
 app.secret_key = "LIHBlksdbv7siubkjb7879tn8t5bnBHGbuy5u98u6fGCGFc4d7fCI7gckhgvR58"
 app.permanent_session_lifetime = timedelta(days = 365)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///main.sqlite3"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
@@ -86,13 +86,20 @@ def index():
         session["logging"] = False
         session["user"] = "no_user"
         session["logged"] = False
-    logged = session["logged"]
-    current_user = session["user"]
-    return render_template("index.html", act_home = "", act_feat = "", act_log = "", page_info = "You are on the main page", logged = session["logged"], user_name = session["user"], sign = "Sign in", sign_url = "logging")
+    session["act_home"] = ""
+    session["act_feat"] = ""
+    session["act_log"] = ""
+    session["sign_url"] = "logging"
+    session["sign"] = "Sign in"
+    session["page_info"] = "You are on the main page"
+    return render_template("index.html", session = session)
 
 @app.route("/view")
 def view():
-    return render_template("view.html", values = users.query.all())
+    if users.query.all():
+        return render_template("view.html", values = users.query.all())
+    else:
+        return f"There are no users"
 
 @app.route("/home")
 def home():
@@ -100,9 +107,13 @@ def home():
         session["logging"] = False
         session["user"] = "no_user"
         session["logged"] = False
-    logged = session["logged"]
-    current_user = session["user"]
-    return render_template("home.html", act_home = "active", act_feat = "", act_log = "", page_info = "You are on the home page", logged = session["logged"], user_name = session["user"], sign = "Sign in", sign_url = "logging")
+    session["act_home"] = "active"
+    session["act_feat"] = ""
+    session["act_log"] = ""
+    session["sign_url"] = "logging"
+    session["sign"] = "Sign in"
+    session["page_info"] = "You are on the home page"
+    return render_template("home.html", session = session)
 
 @app.route("/features")
 def features():
@@ -110,9 +121,13 @@ def features():
         session["logging"] = False
         session["user"] = "no_user"
         session["logged"] = False
-    logged = session["logged"]
-    current_user = session["user"]
-    return render_template("features.html", act_home = "", act_feat = "active", act_log = "", page_info = "You are on the feature page", logged = session["logged"], user_name = session["user"], sign = "Sign in", sign_url = "logging")
+    session["act_home"] = ""
+    session["act_feat"] = "active"
+    session["act_log"] = ""
+    session["sign_url"] = "logging"
+    session["sign"] = "Sign in"
+    session["page_info"] = "You are on the feature page"
+    return render_template("features.html", session = session)
 
 @app.route("/sign_up", methods=["POST", "GET"])
 def sign_up():
@@ -120,26 +135,34 @@ def sign_up():
         session["logging"] = False
         session["user"] = "no_user"
         session["logged"] = False
-    logging = session["logging"]
-    logged = session["logged"]
+    session["act_home"] = ""
+    session["act_feat"] = ""
+    session["act_log"] = "active"
+    session["sign_url"] = "sign_up"
+    session["sign"] = "Sign up"
+    session["page_info"] = "You are on the sign up page"
     if request.method == "POST":
         user = request.form["usrname"]
         passwd = request.form["passwd"]
         email = request.form["email"]
-        name = request.form["name"]
-        surname = request.form["surname"]
+        # name = request.form["name"]
+        # surname = request.form["surname"]
+        name = ""
+        surname = ""
         found_user = users.query.filter_by(user=user).first()
         if found_user:
-            return render_template("sign_up.html",sign_up = False, act_home = "", act_feat = "", act_log = "active", page_info = "You are on the sign up page", logged = session["logged"], sign = "Sign in", sign_url = "sign_up")
+            return render_template("sign_up.html",sign_up = False, session = session)
         usr = users(user, passwd, email, name, surname)
         db.session.add(usr)
         db.session.commit()
         session["user"] = user
         session["password"] = passwd
         session["email"] = email
+        session["name"] = name
+        session["surname"] = surname
         session["logged"] = True
         return redirect(url_for("profile"))
-    return render_template("sign_up.html", act_home = "", act_feat = "", act_log = "active", page_info = "You are on the sign up page" , logged = session["logged"], sign = "Sign up", sign_up = True, sign_url = "sign_up")
+    return render_template("sign_up.html", sign_up = True, session = session)
 
 @app.route("/logging", methods=["POST", "GET"])
 def logging():
@@ -147,13 +170,16 @@ def logging():
         session["logging"] = False
         session["user"] = "no_user"
         session["logged"] = False
-    current_user = session["user"]
-    logging = session["logging"]
-    logged = session["logged"]
+    session["act_home"] = ""
+    session["act_feat"] = ""
+    session["act_log"] = "active"
+    session["sign_url"] = "logging"
+    session["sign"] = "Sign in"
+    session["page_info"] = "You are on the sign in page"
     if request.method == "POST":
         user = request.form["usrname"]
         passwd = request.form["passwd"]
-        found_user = users.query.filter_by(name = user).first()
+        found_user = users.query.filter_by(user = user).first()
         if found_user:
             session.permanent = True
             session["logged"] = True
@@ -161,10 +187,11 @@ def logging():
             return redirect(url_for("profile"))
         else:
             session["logging"] = False
-        if not logging:
-            return render_template("logging.html", act_home = "", act_feat = "", act_log = "active", page_info = "You are on the logging page", logging = False, logged = session["logged"], sign = "Sign in", sign_url = "logging")
+        if not session["logging"]:
+            return render_template("logging.html", session = session)
             session["logging"] = True
-    return render_template("logging.html", act_home = "", act_feat = "", act_log = "active", page_info = "You are on the logging page" , logging = True, logged = session["logged"], sign = "Sign in", sign_url = "logging")
+    session["logging"] = True
+    return render_template("logging.html", session = session)
 
 @app.route("/profile")
 def profile():
@@ -172,12 +199,24 @@ def profile():
         session["logging"] = False
         session["user"] = "no_user"
         session["logged"] = False
-    current_user = session["user"]
-    logged = session["logged"]
-    if current_user == "no_user":
+    session["act_home"] = ""
+    session["act_feat"] = ""
+    session["act_log"] = "active"
+    session["sign"] = "Sign in"
+    session["page_info"] = "You are on the profile page"
+    if session["user"] == "no_user":
         return redirect(url_for("logging"))
     else:
-        return render_template("profile.html", act_home = "", act_feat = "", act_log = "active", page_info = "You are on the logging page", values = users.query.filter_by(name=session["user"]).first(),user_name = session["user"], logged = session["logged"], sign = "Sign in", sign_url = "logging")
+        return render_template("profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session)
+
+@app.route("/profile/edit")
+def edit_profile():
+    session["act_home"] = ""
+    session["act_feat"] = ""
+    session["act_log"] = "active"
+    session["sign"] = "Sign in"
+    session["page_info"] = "You are on the profile editing page"
+    return render_template("edit_profile.html", session = session)
 
 @app.route("/profile/logout")
 def logout():

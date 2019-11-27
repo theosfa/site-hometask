@@ -5,13 +5,14 @@
     1) Profile page
     2) Profile-edit page
       1) Add possibility to add image to the profile page when it possible
+      2) Add possibility to change name, surname, email
     3) Sign in page --- In the process
-    4) Sign up page
+    4) Sign up page --- In the process
     5) Schedule page
     6) Enter home task page
     7) Home task edit page
   1) Create profile page --- $ Completed $
-  2) Create profile-edit page
+  2) Create profile-edit page --- $ Completed $
   3) Create sign in page --- $ Completed $
   4) Create sign up page --- $ Completed $
   5) Create schedule page

@@ -2,8 +2,15 @@
 {% block title %}Profile Page{% endblock %}
 {% block content %}
 <h1>Your profile</h1>
-<h2>User name:</h2>
+<h2>Your nick:</h2>
+<h3>{{ values.user }}</h3>
+
+<h2>Name:</h2>
 <h3>{{ values.name }}</h3>
+
+<h2>Surname:</h2>
+<h3>{{ values.surname }}</h3>
+
 {%if values.email %}
   <h2>User email:</h2>
   <h3>{{ values.email }}</h3>

@@ -2,7 +2,7 @@
 {% block title %}Logging Page{% endblock %}
 {% block content %}
 <h1>Logging:</h1>
-{% if not logging %}
+{% if not session["logging"] %}
   <p style="color: red">Failed to loggin</p>
   <p style="color: red">User name or password is incorrect</p>
 {% endif %}
