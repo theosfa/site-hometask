@@ -83,13 +83,13 @@ class lessons(db.Model):
 @app.route("/")
 def index():
     if not "user" in session:
-        session["logging"] = False
+        session["sign_in"] = False
         session["user"] = "no_user"
         session["logged"] = False
     session["act_home"] = ""
     session["act_feat"] = ""
     session["act_log"] = ""
-    session["sign_url"] = "logging"
+    session["sign_url"] = "sign_in"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the main page"
     return render_template("index.html", session = session)
@@ -104,13 +104,13 @@ def view():
 @app.route("/home")
 def home():
     if not "user" in session:
-        session["logging"] = False
+        session["sign_in"] = False
         session["user"] = "no_user"
         session["logged"] = False
     session["act_home"] = "active"
     session["act_feat"] = ""
     session["act_log"] = ""
-    session["sign_url"] = "logging"
+    session["sign_url"] = "sign_in"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the home page"
     return render_template("home.html", session = session)
@@ -118,13 +118,13 @@ def home():
 @app.route("/features")
 def features():
     if not "user" in session:
-        session["logging"] = False
+        session["sign_in"] = False
         session["user"] = "no_user"
         session["logged"] = False
     session["act_home"] = ""
     session["act_feat"] = "active"
     session["act_log"] = ""
-    session["sign_url"] = "logging"
+    session["sign_url"] = "sign_in"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the feature page"
     return render_template("features.html", session = session)
@@ -132,7 +132,7 @@ def features():
 @app.route("/sign_up", methods=["POST", "GET"])
 def sign_up():
     if not "user" in session:
-        session["logging"] = False
+        session["sign_in"] = False
         session["user"] = "no_user"
         session["logged"] = False
     session["act_home"] = ""
@@ -141,16 +141,16 @@ def sign_up():
     session["sign_url"] = "sign_up"
     session["sign"] = "Sign up"
     session["page_info"] = "You are on the sign up page"
+    session["sign_up_margin"] = "10px"
     if request.method == "POST":
         user = request.form["usrname"]
         passwd = request.form["passwd"]
         email = request.form["email"]
-        # name = request.form["name"]
-        # surname = request.form["surname"]
-        name = ""
-        surname = ""
+        name = request.form["name"]
+        surname = request.form["surname"]
         found_user = users.query.filter_by(user=user).first()
         if found_user:
+            session["sign_up_margin"] = "0px"
             return render_template("sign_up.html",sign_up = False, session = session)
         usr = users(user, passwd, email, name, surname)
         db.session.add(usr)
@@ -164,43 +164,46 @@ def sign_up():
         return redirect(url_for("profile"))
     return render_template("sign_up.html", sign_up = True, session = session)
 
-@app.route("/logging", methods=["POST", "GET"])
-def logging():
+@app.route("/sign_in", methods=["POST", "GET"])
+def sign_in():
     if not "user" in session:
-        session["logging"] = False
+        session["sign_in"] = False
         session["user"] = "no_user"
         session["logged"] = False
     session["act_home"] = ""
     session["act_feat"] = ""
     session["act_log"] = "active"
-    session["sign_url"] = "logging"
+    session["sign_url"] = "sign_in"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the sign in page"
     if request.method == "POST":
         user = request.form["usrname"]
         passwd = request.form["passwd"]
+        checkbox = request.form["checkbox"]
+        session["checkbox"] = checkbox
         found_user = users.query.filter_by(user = user).first()
-        if found_user:
-            session.permanent = True
+        if found_user and found_user.password == passwd:
+            if checkbox:
+                session.permanent = True
+            else:
+                session.permanent = False
             session["logged"] = True
             session["user"] = user
             return redirect(url_for("profile"))
         else:
-            session["logging"] = False
-        if not session["logging"]:
-            return render_template("logging.html", session = session)
-            session["logging"] = True
-    session["logging"] = True
-    return render_template("logging.html", session = session)
+            session["sign_in"] = False
+        if not session["sign_in"]:
+            return render_template("sign_in.html", session = session)
+            session["sign_in"] = True
+    session["sign_in"] = True
+    return render_template("sign_in.html", session = session)
 
 @app.route("/profile")
 def profile():
     if not "user" in session:
-        session["logging"] = False
-        session["user"] = "no_user"
+        session["sign_in"] = False
         session["logged"] = False
-    if session["user"] == "no_user":
-        return redirect(url_for("logging"))
+        return redirect(url_for("sign_in"))
     session["act_home"] = ""
     session["act_feat"] = ""
     session["act_log"] = "active"
@@ -211,11 +214,9 @@ def profile():
 @app.route("/profile/edit")
 def edit_profile():
     if not "user" in session:
-        session["logging"] = False
-        session["user"] = "no_user"
+        session["sign_in"] = False
         session["logged"] = False
-    if session["user"] == "no_user":
-        return redirect(url_for("logging"))
+        return redirect(url_for("sign_in"))
     session["act_home"] = ""
     session["act_feat"] = ""
     session["act_log"] = "active"
@@ -225,9 +226,9 @@ def edit_profile():
 
 @app.route("/profile/logout")
 def logout():
-    session["logging"] = False
+    session["sign_in"] = False
     session["logged"] = False
-    session["user"] = "no_user"
+    session.pop("user")
     return redirect(url_for("index"))
 
 if __name__ == "__main__" :

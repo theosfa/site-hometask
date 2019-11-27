@@ -7,7 +7,7 @@
       1) Add possibility to add image to the profile page when it possible
       2) Add possibility to change name, surname, email
     3) Sign in page --- $ Completed $
-    4) Sign up page --- In the process
+    4) Sign up page --- $ Completed $
     5) Schedule page
     6) Enter home task page
     7) Home task edit page
@@ -52,3 +52,7 @@
 --------------------------------------------------------------------------------
 6) Implement the script of editing home task
   1) Users can change it only once a day
+--------------------------------------------------------------------------------
+Next thing that i will do is to create profile-edit page
+and write a script for it's working
+Also i think that all profile pages i need to put in other python file

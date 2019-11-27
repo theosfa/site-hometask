@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Sing up page{% endblock %}
+{% block title %}Sing in page{% endblock %}
 {% block content %}
 <div class="text-center" >
 
@@ -20,30 +20,6 @@
     margin-bottom: -1px;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
-}
-
-.form-signin input[name="email"] {
-    margin-bottom: -1px;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin input[name="name"] {
-    margin-bottom: -1px;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.form-signin input[name="surname"] {
-    margin-bottom: -1px;
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
 }
 
 .form-signin .form-control {
@@ -120,17 +96,18 @@ button, input, optgroup, select, textarea {
 
 <form class="form-signin" method="post">
   <img class="mb-4" src="{{url_for("static", filename="images/navbar_icon.jpg")}}" alt="" width="72" height="72" style="border-radius:15px">
-  <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
-  <input type="text" name="usrname" placeholder="User nickname" id="inputUsername" class="form-control" required="" autofocus="">
-  <input type="email" name="email" placeholder="User email" id="inputUsername" class="form-control" required="" autofocus="">
-  <input type="text" name="name" placeholder="User name" id="inputUsername" class="form-control" required="" autofocus="">
-  <input type="text" name="surname" placeholder="User surname" id="inputUsername" class="form-control" required="" autofocus="">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <input type="text" name="usrname" id="inputUsername" class="form-control" placeholder="User nickname" required="" autofocus="" aria-describedby="userlHelp">
   <input type="password" name="passwd" id="inputPassword" class="form-control" placeholder="Password" required="" aria-describedby="passwdlHelp">
-  {% if not sign_up %}
-  <small id="passwdHelp" class="form-text text-muted" >Failed to signing up! Such user exist</small>
+  {% if not session["sign_in"] %}
+  <small id="passwdHelp" class="form-text text-muted" >Failed to sign in! Password or user name is incorrect</small>
   {% endif %}
-  <button type="submit" class="btn btn-lg btn-primary btn-block" style="margin-top:{{session["sign_up_margin"]}}">Sign up</button>
-  <a href="/sign_in" class="btn btn-lg btn-outline-secondary btn-block" role="button" style="margin-top:5px;padding: 1px;height: 35px">Click here to sign in</a>
+  <div class="checkbox mb-3">
+    <input type="checkbox" name="checkbox" value="True" style="margin-top:20px"> Remember me
+    <input type="hidden" name="checkbox" value="False" style="margin-top:20px">
+  </div>
+  <button type="submit" class="btn btn-lg btn-primary btn-block" style="margin-top:-10px">Sign in</button>
+  <a href="/sign_up" class="btn btn-lg btn-outline-secondary btn-block" role="button" style="margin-top:5px;padding: 1px;height: 35px">Click here to sign up</a>
   <p class="mt-5 text-muted">© 2019</p>
 </form>
 
