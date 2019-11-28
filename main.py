@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, request, session
-from datetime import timedelta
+from datetime import timedelta, datetime
 from flask_sqlalchemy import SQLAlchemy
 from init_weeks.weeks import weeks
 
@@ -28,9 +28,12 @@ class users(db.Model):
         self.name = name
         self.surname = surname
 
+
+
 class lessons(db.Model):
     _id = db.Column("id", db.Integer, primary_key=True)
     weekday = db.Column(db.String(100))
+    date = db.Column(db.Date)
 
     time_1 = db.Column(db.String(100))
     lesson_1 = db.Column(db.String(100))
@@ -52,8 +55,9 @@ class lessons(db.Model):
     hometask_4 = db.Column(db.String(100))
     name_changer_4 = db.Column(db.String(100))
 
-    def __init__(self,weekday):
+    def __init__(self,weekday, date):
         self.weekday = weekday
+        self.date = date
 
     def lesson1(self, time, lesson, hometask, changer):
         self.time_1 = time
@@ -100,6 +104,35 @@ def view():
         return render_template("view.html", values = users.query.all())
     else:
         return f"There are no users"
+
+@app.route("/create_today")
+def date():
+    today = datetime.today().date()
+    dates = lessons("Thursday",today)
+    db.session.add(dates)
+    db.session.commit()
+    tommorow = datetime(year = 2019, month = today.month, day = today.day + 1).date()
+    dates = lessons("Wensday",tommorow)
+    db.session.add(dates)
+    db.session.commit()
+    return f"{today}, {tommorow}"
+
+@app.route("/today")
+def today():
+    mylist = []
+    today = datetime.today().date()
+    mylist.append(today)
+    found_date = lessons.query.filter_by(date=datetime.today().date()).first()
+    return f"{found_date.weekday}, {today.year}"
+
+@app.route("/tommorow")
+def tommorow():
+    mylist = []
+    today = datetime.today().date()
+    tommorow = datetime(year = 2019, month = today.month, day = today.day + 1).date()
+    mylist.append(today)
+    found_date = lessons.query.filter_by(date=tommorow).first()
+    return f"{found_date.weekday}, {tommorow.year}"
 
 @app.route("/home")
 def home():
