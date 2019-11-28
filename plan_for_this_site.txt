@@ -56,3 +56,4 @@
 Next thing that i will do is to create profile-edit page
 and write a script for it's working
 Also i think that all profile pages i need to put in other python file
+I need to edit profile page and profile-edit page
