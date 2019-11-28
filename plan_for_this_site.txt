@@ -17,7 +17,7 @@
   4) Create sign up page --- $ Completed $
   5) Create schedule page
   6) Create enter home task page
-  7) Create home task edit page
+  7) Create home task edit page only for admin
 --------------------------------------------------------------------------------
 2) Create users table for data base:
   1) Add name column --- $ Completed $
