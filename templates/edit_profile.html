@@ -85,10 +85,9 @@ width: 70%;
         <div class="input-group-prepend">
           <span class="input-group-text">Your biography:</span>
         </div>
-        <textarea class="form-control" name="biography" value="biography" aria-label="With textarea">{{values.biography}}</textarea>
+        <textarea cols="79" rows="{{session["row"]}}" class="form-control" name="biography" value="biography" aria-label="With textarea">{{values.biography}}</textarea>
       </div>
-      <button type="submit" class="btn btn-lg btn-primary btn-block"  value="Submit">Submit</button>
-
+      <button type="submit" class="btn btn-lg btn-primary btn-block"  value="Submit" style="width:100px;margin-top:10px; align:center">Submit</button>
       <!-- <h2>Your biography:</h2>
       <p style="font-size: 20px">For examlpe:<br> My name is Fedor, I live in Minsk. I'm 17 years old. <br> I'm programming for 4 years and this site also was created by me. <br> As Languages i know English and French. <br> As programming languages i'm using Python and his libriaries as: <br> flask, django, sqlalchemy, pygame, beautifullsoup and etc. </p> -->
     </div>

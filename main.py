@@ -255,12 +255,15 @@ def edit_profile():
     session["act_log"] = "active"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the profile editing page"
+    user = users.query.filter_by(user=session["user"]).first()
+    session["row"] = round(len(user.biography) / 79) + 2
     if request.method == "POST" :
         name = request.form["name"]
         surname = request.form["surname"]
         email = request.form["email"]
         biography = request.form["biography"]
         user = users.query.filter_by(user=session["user"]).first()
+        session["row"] = round(len(biography) / 79) + 2
         user.name = name
         user.surname = surname
         user.email = email
