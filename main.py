@@ -101,6 +101,10 @@ def index():
     session["page_info"] = "You are on the main page"
     return render_template("index.html", session = session)
 
+@app.route("/users")
+def users():
+    return render_template("users.html",values = users.query.all())
+
 @app.route("/view")
 def view():
     if users.query.all():
