@@ -102,8 +102,8 @@ def index():
     return render_template("index.html", session = session)
 
 @app.route("/users")
-def users():
-    return render_template("users.html",values = users.query.all())
+def all_users():
+    return render_template("all_users.html",values = users.query.all())
 
 @app.route("/view")
 def view():
@@ -247,6 +247,10 @@ def profile():
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the profile page"
     return render_template("profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session)
+
+@app.route("/profile/<user>")
+def user_profile(user):
+    return render_template("user-profile.html", values = users.query.filter_by(user=user).first(), session = session)
 
 @app.route("/profile/edit", methods= ["POST","GET"])
 def edit_profile():

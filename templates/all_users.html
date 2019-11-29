@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}List of users{% endblock %}
+{% block content %}
+	{% for x in values %}
+	<div class="card-deck" style="width:50%;">
+			<div class="card mb-3">
+					<div class="card-header" style="height:30px">
+							<p class="alert text-left" style="margin-top:-23px"><a href="/profile/{{x.user}}">User nickname : {{x.user}}</a></p>
+					</div>
+					<div class="card-body">
+						<div style="margin:-15px;text-align:left;padding-left:30px">
+							<b style=""> User name : {{x.name}}</b><br>
+							<b style="margin-top:-23px"> User surname : {{x.surname}}</b><br>
+							<b style="margin-top:-23px"> User email : {{x.email}}</b>
+						</div>
+					</div>
+			</div>
+	</div>
+	{% endfor %}
+{% endblock %}
+<style media="screen">
+	.list{
+		text-align: left;
+	}
+</style>
