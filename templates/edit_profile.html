@@ -1,5 +1,100 @@
 {% extends "base.html" %}
 {% block title%}Edit profile{% endblock %}
 {% block content %}
-<h1>You are on the profile editing page</h1>
+<style media="screen">
+#container{
+  position:relative;
+ /* border:1px solid black; */
+}
+
+.box{
+  /* border:1px solid red; */
+  position:absolute;
+}
+
+.top{
+top:0;
+}
+
+.nick{
+  left: 0;
+  top:300px;
+  width: 300px;
+  text-align: center;
+}
+
+.news{
+  top: 350px;
+  width: 300px;
+  left: 0;
+  text-align: justify;
+}
+
+.left{
+left:0;
+height:300px;
+width:300px;
+}
+.profile-info{
+right:0;
+width: 900px;
+text-align: center;
+width: 70%;
+}
+
+.text-left{
+  text-align: left;
+  margin-left: 10%;
+}
+</style>
+<div id="container" class="box">
+  <div class="box top left">
+    <img src="{{url_for("static", filename="images/navbar_icon.jpg")}}" width=100%>
+  </div>
+  <div class="box nick">
+    <h2>Your nick: {{ values.user }}</h2>
+  </div>
+  <div class="box news">
+    <p>Down here will be news of this site or smth else</p>
+  </div>
+
+
+  <div class="box top profile-info">
+    <h1>Your profile</h1>
+    <div class="text-left">
+      <form method="post">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Name:</span>
+        </div>
+        <input type="text" name="name" class="form-control" value="{{values.name}}" placeholder="Your name" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Surname:</span>
+        </div>
+        <input type="text" name="surname" class="form-control" value="{{values.surname}}" placeholder="Your surname" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">User email:</span>
+        </div>
+        <input type="email" name="email" class="form-control"value="{{values.email}}" placeholder="Your name" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Your biography:</span>
+        </div>
+        <textarea class="form-control" name="biography" value="biography" aria-label="With textarea">{{values.biography}}</textarea>
+      </div>
+      <button type="submit" class="btn btn-lg btn-primary btn-block"  value="Submit">Submit</button>
+
+      <!-- <h2>Your biography:</h2>
+      <p style="font-size: 20px">For examlpe:<br> My name is Fedor, I live in Minsk. I'm 17 years old. <br> I'm programming for 4 years and this site also was created by me. <br> As Languages i know English and French. <br> As programming languages i'm using Python and his libriaries as: <br> flask, django, sqlalchemy, pygame, beautifullsoup and etc. </p> -->
+    </div>
+  </form>
+  </div>
+</div>
+
+
 {% endblock %}

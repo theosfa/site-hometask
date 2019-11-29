@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, session
 from datetime import timedelta, datetime
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import update
 from init_weeks.weeks import weeks
 
 app = Flask(__name__)
@@ -20,13 +21,15 @@ class users(db.Model):
     email = db.Column(db.String(100))
     name = db.Column(db.String(100))
     surname = db.Column(db.String(100))
+    biography = db.Column(db.String(2000))
 
-    def __init__(self, user, password, email, name, surname):
+    def __init__(self, user, password, email, name, surname,biography):
         self.user = user
         self.email = email
         self.password = password
         self.name = name
         self.surname = surname
+        self.biography = biography
 
 
 
@@ -181,18 +184,15 @@ def sign_up():
         email = request.form["email"]
         name = request.form["name"]
         surname = request.form["surname"]
+        biography = ""
         found_user = users.query.filter_by(user=user).first()
         if found_user:
             session["sign_up_margin"] = "0px"
             return render_template("sign_up.html",sign_up = False, session = session)
-        usr = users(user, passwd, email, name, surname)
+        usr = users(user, passwd, email, name, surname, biography)
         db.session.add(usr)
         db.session.commit()
         session["user"] = user
-        session["password"] = passwd
-        session["email"] = email
-        session["name"] = name
-        session["surname"] = surname
         session["logged"] = True
         return redirect(url_for("profile"))
     return render_template("sign_up.html", sign_up = True, session = session)
@@ -214,7 +214,7 @@ def sign_in():
         passwd = request.form["passwd"]
         checkbox = request.form["checkbox"]
         session["checkbox"] = checkbox
-        found_user = users.query.filter_by(user = user).first()
+        found_user = users.query.filter_by(user=user).first()
         if found_user and found_user.password == passwd:
             if checkbox:
                 session.permanent = True
@@ -244,7 +244,7 @@ def profile():
     session["page_info"] = "You are on the profile page"
     return render_template("profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session)
 
-@app.route("/profile/edit")
+@app.route("/profile/edit", methods= ["POST","GET"])
 def edit_profile():
     if not "user" in session:
         session["sign_in"] = False
@@ -255,7 +255,18 @@ def edit_profile():
     session["act_log"] = "active"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the profile editing page"
-    return render_template("edit_profile.html", session = session)
+    if request.method == "POST" :
+        name = request.form["name"]
+        surname = request.form["surname"]
+        email = request.form["email"]
+        biography = request.form["biography"]
+        user = users.query.filter_by(user=session["user"]).first()
+        user.name = name
+        user.surname = surname
+        user.email = email
+        user.biography = biography
+        db.session.commit()
+    return render_template("edit_profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session)
 
 @app.route("/profile/logout")
 def logout():

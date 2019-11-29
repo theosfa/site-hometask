@@ -2,10 +2,10 @@
 -----What to do:-----
 1) Create site architecture:
   0) Edit pages for nice view
-    1) Profile page
+    1) Profile page --- $ Completed $
     2) Profile-edit page
       1) Add possibility to add image to the profile page when it possible
-      2) Add possibility to change name, surname, email
+      2) Editing name, surname, email, biography --- $ Completed $
     3) Sign in page --- $ Completed $
     4) Sign up page --- $ Completed $
     5) Schedule page
@@ -48,7 +48,7 @@
 --------------------------------------------------------------------------------
 5) Improve system of signing up:
   1) Checking length of nick name
-  2) Checking if field is empty
+  2) Checking if field is empty --- $ Completed $
 --------------------------------------------------------------------------------
 6) Implement the script of editing home task
   1) Users can change it only once a day

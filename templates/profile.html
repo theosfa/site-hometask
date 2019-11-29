@@ -1,24 +1,85 @@
 {% extends "base.html" %}
 {% block title %}Profile Page{% endblock %}
 {% block content %}
-<h1>Your profile</h1>
+<style media="screen">
+#container{
+  position:relative;
+ /* border:1px solid black; */
+}
 
-<h2>Checkbox:</h2>
-<h3>{{ session["checkbox"] }}</h3>
+.box{
+  /* border:1px solid red; */
+  position:absolute;
+}
 
-<h2>Your nick:</h2>
-<h3>{{ values.user }}</h3>
+.top{
+top:0;
+}
 
-<h2>Name:</h2>
-<h3>{{ values.name }}</h3>
+.nick{
+  left: 0;
+  top:300px;
+  width: 300px;
+  text-align: center;
+}
 
-<h2>Surname:</h2>
-<h3>{{ values.surname }}</h3>
+.news{
+  top: 350px;
+  width: 300px;
+  left: 0;
+  text-align: justify;
+}
 
-{%if values.email %}
-  <h2>User email:</h2>
-  <h3>{{ values.email }}</h3>
-{% else %}
-  <h2>You don't have an email</h2>
-{% endif %}
+.left{
+left:0;
+height:300px;
+width:300px;
+}
+.profile-info{
+right:0;
+width: 900px;
+text-align: center;
+width: 70%;
+}
+
+.text-left{
+  text-align: left;
+  margin-left: 10%;
+}
+</style>
+<div id="container" class="box">
+  <div class="box top left">
+    <img src="{{url_for("static", filename="images/navbar_icon.jpg")}}" width=100%>
+  </div>
+  <div class="box nick">
+    <h2>Your nick: {{ values.user }}</h2>
+  </div>
+  <div class="box news">
+    <p>Down here will be news of this site or smth else</p>
+  </div>
+
+  <div class="box top profile-info">
+    <h1>Your profile</h1>
+    <div class="text-left">
+      <h2>Name: {{ values.name }}</h2>
+
+      <h2>Surname: {{ values.surname }}</h2>
+
+      {%if values.email %}
+      <h2>User email: {{ values.email }}</h2>
+      {% else %}
+      <h2>You don't have an email</h2>
+      {% endif %}
+      {% if values.biography == "" %}
+      <h2>You didn't write your biography :(</h2>
+      <h3>You can go to the profile-edit page and add your biography</h3>
+      {% else %}
+      <h2>Your biography:</h2>
+      <p style="font-size: 20px"> {{values.biography}} </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}
