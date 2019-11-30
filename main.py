@@ -88,6 +88,7 @@ class lessons(db.Model):
 
 
 @app.route("/")
+@app.route("/info-page")
 def index():
     if not "user" in session:
         session["sign_in"] = False
@@ -141,7 +142,7 @@ def tommorow():
     found_date = lessons.query.filter_by(date=tommorow).first()
     return f"{found_date.weekday}, {tommorow.year}"
 
-@app.route("/home")
+@app.route("/schedule")
 def home():
     if not "user" in session:
         session["sign_in"] = False
@@ -153,9 +154,9 @@ def home():
     session["sign_url"] = "sign_in"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the home page"
-    return render_template("home.html", session = session)
+    return render_template("schedule.html", session = session)
 
-@app.route("/features")
+@app.route("/home-edit")
 def features():
     if not "user" in session:
         session["sign_in"] = False
@@ -167,7 +168,7 @@ def features():
     session["sign_url"] = "sign_in"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the feature page"
-    return render_template("features.html", session = session)
+    return render_template("hometask-edit.html", session = session)
 
 @app.route("/sign_up", methods=["POST", "GET"])
 def sign_up():
