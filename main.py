@@ -106,12 +106,12 @@ def index():
 def all_users():
     return render_template("all_users.html",values = users.query.all())
 
-@app.route("/view")
-def view():
-    if users.query.all():
-        return render_template("view.html", values = users.query.all())
-    else:
-        return f"There are no users"
+# @app.route("/view")
+# def view():
+#     if users.query.all():
+#         return render_template("view.html", values = users.query.all())
+#     else:
+#         return f"There are no users"
 
 @app.route("/create_today")
 def date():
