@@ -7,7 +7,7 @@ from init_weeks.weeks import weeks
 app = Flask(__name__)
 app.register_blueprint(weeks,url_prefix="/init")
 app.secret_key = "LIHBlksdbv7siubkjb7879tn8t5bnBHGbuy5u98u6fGCGFc4d7fCI7gckhgvR58"
-app.permanent_session_lifetime = timedelta(days = 365)
+
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -221,6 +221,7 @@ def sign_in():
         found_user = users.query.filter_by(user=user).first()
         if found_user and found_user.password == passwd:
             if checkbox:
+                app.permanent_session_lifetime = timedelta(days = 365)
                 session.permanent = True
             else:
                 session.permanent = False
