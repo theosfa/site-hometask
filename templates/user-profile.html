@@ -18,26 +18,26 @@ top:0;
 
 .nick{
   left: 0;
-  top:300px;
-  width: 300px;
+  width: 30%;
+  /* top:350px; */
   text-align: center;
 }
 
 .news{
-  top: 350px;
-  width: 300px;
+  width: 100%;
   left: 0;
   text-align: justify;
 }
 
 .left{
 left:0;
-height:300px;
-width:300px;
+width: 30%;
+max-width: 350px;
+max-height: 350px;
+display: inline-block;
 }
 .profile-info{
 right:0;
-width: 900px;
 text-align: center;
 width: 70%;
 }
@@ -49,13 +49,13 @@ width: 70%;
 </style>
 <div id="container" class="box">
   <div class="box top left">
-    <img src="{{url_for("static", filename="images/navbar_icon.jpg")}}" width=100%>
+    <img src="{{url_for("static", filename="images/navbar_icon.jpg")}}" width="100%" style="display:inline-block">
+    <h2>Your nick: {{ values.user }}</h2>
+    <div class="box news">
+      <p>Down here will be news of this site or smth else</p>
+    </div>
   </div>
   <div class="box nick">
-    <h2>Your nick: {{ values.user }}</h2>
-  </div>
-  <div class="box news">
-    <p>Down here will be news of this site or smth else</p>
   </div>
 
   <div class="box top profile-info">
@@ -74,7 +74,7 @@ width: 70%;
       <h2>User didn't write his biography :(</h2>
       <!-- <h3>You can go to the profile-edit page and add your biography</h3> -->
       {% else %}
-      <h2>Your biography:</h2>
+      <h2>User biography:</h2>
       <p style="font-size: 20px"> {{values.biography}} </p>
       {% endif %}
     </div>
