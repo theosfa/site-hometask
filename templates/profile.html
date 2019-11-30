@@ -12,6 +12,11 @@
   position:absolute;
 }
 
+.container-profile{
+  display: flex;
+  justify-content: center;
+}
+
 .top{
 top:0;
 }
@@ -28,6 +33,7 @@ width: 30%;
 max-width: 350px;
 max-height: 350px;
 display: inline-block;
+display: flex;
 }
 .profile-info{
 right:0;
@@ -40,7 +46,7 @@ width: 70%;
   margin-left: 10%;
 }
 </style>
-<div id="container" class="box ">
+<div id="container" class="box container-profile">
   <div class="box top left">
     <img src="{{url_for("static", filename="images/navbar_icon.jpg")}}" width="100%" style="display:inline-block">
     <h2>Your nick: {{ values.user }}</h2>
@@ -53,9 +59,7 @@ width: 70%;
     <h1>Your profile</h1>
     <div class="text-left">
       <h2>Name: {{ values.name }}</h2>
-
       <h2>Surname: {{ values.surname }}</h2>
-
       {%if values.email %}
       <h2>User email: {{ values.email }}</h2>
       {% else %}

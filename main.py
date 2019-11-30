@@ -3,6 +3,7 @@ from datetime import timedelta, datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import update
 from init_weeks.weeks import weeks
+import random as rand
 
 app = Flask(__name__)
 app.register_blueprint(weeks,url_prefix="/init")
@@ -156,19 +157,24 @@ def home():
     session["page_info"] = "You are on the home page"
     return render_template("schedule.html", session = session)
 
-@app.route("/home-edit")
+@app.route("/home-edit", methods=["post","get"])
 def features():
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
         session["logged"] = False
+    gen_number = {}
+    number_of_numbers = 5
     session["act_home"] = ""
     session["act_feat"] = "active"
     session["act_log"] = ""
     session["sign_url"] = "sign_in"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the feature page"
-    return render_template("hometask-edit.html", session = session)
+    if request.method == "POST":
+        for i in range(number_of_numbers):
+            gen_number[i] = rand.randint(1, 465)
+    return render_template("hometask-edit.html", session = session, generated_number = gen_number)
 
 @app.route("/sign_up", methods=["POST", "GET"])
 def sign_up():
