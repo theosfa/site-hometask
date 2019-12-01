@@ -10,23 +10,26 @@
 .box{
   /* border:1px solid red; */
   position:absolute;
+
+}
+
+.container-profile{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .top{
 top:0;
 }
 
-.nick{
-  left: 0;
-  width: 30%;
-  /* top:350px; */
-  text-align: center;
-}
-
 .news{
   width: 100%;
   left: 0;
   text-align: justify;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .left{
@@ -35,6 +38,9 @@ width: 30%;
 max-width: 350px;
 max-height: 350px;
 display: inline-block;
+display: flex;
+justify-content: flex-start;
+flex-direction: column;
 }
 .profile-info{
 right:0;
@@ -47,14 +53,15 @@ width: 70%;
   margin-left: 10%;
 }
 </style>
-<div id="container" class="box">
+<div id="container" class="box container-profile">
   <div class="box top left">
     <img src="{{url_for("static", filename="images/navbar_icon.jpg")}}" width="100%" style="display:inline-block">
-    <h2>Your nick: {{ values.user }}</h2>
-    <div class="box news">
+    <h2>User nick: {{ values.user }}</h2>
+    <div>
       <p>Down here will be news of this site or smth else</p>
     </div>
   </div>
+
   <div class="box top profile-info">
     <h1>Your profile</h1>
     <div class="text-left">
