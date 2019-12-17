@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{session["dz1"]}}{% endblock %}
+{% block content %}
+<h1>{{session["dz1"]}} page</h1>
+<form method="post">
+  <label for="enter_dz">{{session["dz1"]}}</label>
+  <input type="text" name="dz1" id="enter_dz">
+  <button type="submit" name="button">Submit</button>
+</form>
+{% endblock %}

@@ -92,6 +92,18 @@ class lessons(db.Model):
 @app.route("/")
 @app.route("/info-page")
 def index():
+    if not "view_dz1" in session:
+        session["view_dz1"] = True
+    if not "view_dz2" in session:
+        session["view_dz2"] = True
+    if not "view_dz3" in session:
+        session["view_dz3"] = True
+    if not "view_dz4" in session:
+        session["view_dz4"] = True
+    session["dz1"] = "Math"
+    session["dz2"] = "Programming"
+    session["dz3"] = "History"
+    session["dz4"] = "Geometry"
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
@@ -146,6 +158,14 @@ def tommorow():
 
 @app.route("/schedule")
 def home():
+    if not "view_dz1" in session:
+        session["view_dz1"] = True
+    if not "view_dz2" in session:
+        session["view_dz2"] = True
+    if not "view_dz3" in session:
+        session["view_dz3"] = True
+    if not "view_dz4" in session:
+        session["view_dz4"] = True
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
@@ -176,6 +196,54 @@ def features():
         for i in range(number_of_numbers):
             gen_number[i] = rand.randint(1, 465)
     return render_template("hometask-edit.html", session = session, generated_number = gen_number)
+
+@app.route("/dz1", methods=["POST","GET"])
+def dz1():
+    session["view_dz1"] = True
+    session["dz1"] = "Math"
+    session["dz2"] = "Programming"
+    session["dz3"] = "History"
+    session["dz4"] = "Geometry"
+    if request.method == "POST":
+        session["view_dz1"] = False
+        return redirect(url_for("index"))
+    return render_template("dz1.html",session = session)
+
+@app.route("/dz2", methods=["POST","GET"])
+def dz2():
+    session["view_dz2"] = True
+    session["dz1"] = "Math"
+    session["dz2"] = "Programming"
+    session["dz3"] = "History"
+    session["dz4"] = "Geometry"
+    if request.method == "POST":
+        session["view_dz2"] = False
+        return redirect(url_for("index"))
+    return render_template("dz2.html",session = session)
+
+@app.route("/dz3", methods=["POST","GET"])
+def dz3():
+    session["view_dz3"] = True
+    session["dz1"] = "Math"
+    session["dz2"] = "Programming"
+    session["dz3"] = "History"
+    session["dz4"] = "Geometry"
+    if request.method == "POST":
+        session["view_dz3"] = False
+        return redirect(url_for("index"))
+    return render_template("dz3.html",session = session)
+
+@app.route("/dz4", methods=["POST","GET"])
+def dz4():
+    session["view_dz4"] = True
+    session["dz1"] = "Math"
+    session["dz2"] = "Programming"
+    session["dz3"] = "History"
+    session["dz4"] = "Geometry"
+    if request.method == "POST":
+        session["view_dz4"] = False
+        return redirect(url_for("index"))
+    return render_template("dz4.html",session = session)
 
 @app.route("/sign_up", methods=["POST", "GET"])
 def sign_up():
