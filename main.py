@@ -8,7 +8,10 @@ import random as rand
 app = Flask(__name__)
 app.register_blueprint(weeks,url_prefix="/init")
 app.secret_key = "LIHBlksdbv7siubkjb7879tn8t5bnBHGbuy5u98u6fGCGFc4d7fCI7gckhgvR58"
-
+view_dz1 = True
+view_dz2 = True
+view_dz3 = True
+view_dz4 = True
 
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db.sqlite3"
@@ -92,14 +95,23 @@ class lessons(db.Model):
 @app.route("/")
 @app.route("/info-page")
 def index():
+    global view_dz1
+    global view_dz2
+    global view_dz3
+    global view_dz4
     if  session["view_dz1"] == "":
-        session["view_dz1"] = True
+        session["view_dz1"] = view_dz1
     if session["view_dz2"] == "":
-        session["view_dz2"] = True
+        session["view_dz2"] = view_dz2
     if session["view_dz3"] == "":
-        session["view_dz3"] = True
+        session["view_dz3"] = view_dz3
     if session["view_dz4"] == "":
-        session["view_dz4"] = True
+        session["view_dz4"] = view_dz4
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
+    session["onpage"] = "index"
     session["dz1"] = "Math"
     session["dz2"] = "Programming"
     session["dz3"] = "History"
@@ -156,16 +168,25 @@ def tommorow():
     found_date = lessons.query.filter_by(date=tommorow).first()
     return f"{found_date.weekday}, {tommorow.year}"
 
-@app.route("/schedule")
+@app.route("/schedule", methods=["post","get"])
 def home():
+    global view_dz1
+    global view_dz2
+    global view_dz3
+    global view_dz4
+    session["onpage"] = "home"
     if  session["view_dz1"] == "":
-        session["view_dz1"] = True
+        session["view_dz1"] = view_dz1
     if session["view_dz2"] == "":
-        session["view_dz2"] = True
+        session["view_dz2"] = view_dz2
     if session["view_dz3"] == "":
-        session["view_dz3"] = True
+        session["view_dz3"] = view_dz3
     if session["view_dz4"] == "":
-        session["view_dz4"] = True
+        session["view_dz4"] = view_dz4
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
@@ -176,10 +197,24 @@ def home():
     session["sign_url"] = "sign_in"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the home page"
+    if request.method == "POST":
+        view_dz1 = True
+        view_dz2 = True
+        view_dz3 = True
+        view_dz4 = True
+        session["view_dz1"] = view_dz1
+        session["view_dz2"] = view_dz2
+        session["view_dz3"] = view_dz3
+        session["view_dz4"] = view_dz4
     return render_template("schedule.html", session = session)
 
 @app.route("/home-edit", methods=["post","get"])
 def features():
+    session["onpage"] = "features"
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
@@ -199,62 +234,99 @@ def features():
 
 @app.route("/dz1", methods=["POST","GET"])
 def dz1():
-    session["view_dz1"] = True
+    global view_dz1
+    session["onpage"] = "dz1"
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
+    session["view_dz1"] = view_dz1
     session["dz1"] = "Math"
     session["dz2"] = "Programming"
     session["dz3"] = "History"
     session["dz4"] = "Geometry"
     if request.method == "POST":
-        session["view_dz1"] = False
+        view_dz1 = False
+        session["view_dz1"] = view_dz1
         return redirect(url_for("index"))
     return render_template("dz1.html",session = session)
 
 @app.route("/dz2", methods=["POST","GET"])
 def dz2():
-    session["view_dz2"] = True
+    global view_dz2
+    session["onpage"] = "dz2"
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
+    session["view_dz2"] = view_dz2
     session["dz1"] = "Math"
     session["dz2"] = "Programming"
     session["dz3"] = "History"
     session["dz4"] = "Geometry"
     if request.method == "POST":
-        session["view_dz2"] = False
+        view_dz2 = False
+        session["view_dz2"] = view_dz2
         return redirect(url_for("index"))
     return render_template("dz2.html",session = session)
 
 @app.route("/dz3", methods=["POST","GET"])
 def dz3():
-    session["view_dz3"] = True
+    global view_dz3
+    session["onpage"] = "dz3"
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
+    session["view_dz3"] = view_dz3
     session["dz1"] = "Math"
     session["dz2"] = "Programming"
     session["dz3"] = "History"
     session["dz4"] = "Geometry"
     if request.method == "POST":
-        session["view_dz3"] = False
+        view_dz3 = False
+        session["view_dz3"] = view_dz3
         return redirect(url_for("index"))
     return render_template("dz3.html",session = session)
 
 @app.route("/dz4", methods=["POST","GET"])
 def dz4():
-    session["view_dz4"] = True
+    global view_dz4
+    session["onpage"] = "dz4"
+    session["view_dz4"] = view_dz4
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
     session["dz1"] = "Math"
     session["dz2"] = "Programming"
     session["dz3"] = "History"
     session["dz4"] = "Geometry"
     if request.method == "POST":
-        session["view_dz4"] = False
+        view_dz4 = False
+        session["view_dz4"] = view_dz4
         return redirect(url_for("index"))
     return render_template("dz4.html",session = session)
 
 @app.route("/sign_up", methods=["POST", "GET"])
 def sign_up():
+    global view_dz1
+    global view_dz2
+    global view_dz3
+    global view_dz4
+    session["onpage"] = "sign_up"
     if  session["view_dz1"] == "":
-        session["view_dz1"] = True
+        session["view_dz1"] = view_dz1
     if session["view_dz2"] == "":
-        session["view_dz2"] = True
+        session["view_dz2"] = view_dz2
     if session["view_dz3"] == "":
-        session["view_dz3"] = True
+        session["view_dz3"] = view_dz3
     if session["view_dz4"] == "":
-        session["view_dz4"] = True
+        session["view_dz4"] = view_dz4
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
@@ -287,14 +359,23 @@ def sign_up():
 
 @app.route("/sign_in", methods=["POST", "GET"])
 def sign_in():
+    global view_dz1
+    global view_dz2
+    global view_dz3
+    global view_dz4
+    session["onpage"] = "sign_in"
     if  session["view_dz1"] == "":
-        session["view_dz1"] = True
+        session["view_dz1"] = view_dz1
     if session["view_dz2"] == "":
-        session["view_dz2"] = True
+        session["view_dz2"] = view_dz2
     if session["view_dz3"] == "":
-        session["view_dz3"] = True
+        session["view_dz3"] = view_dz3
     if session["view_dz4"] == "":
-        session["view_dz4"] = True
+        session["view_dz4"] = view_dz4
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
@@ -330,14 +411,23 @@ def sign_in():
 
 @app.route("/profile")
 def profile():
+    global view_dz1
+    global view_dz2
+    global view_dz3
+    global view_dz4
+    session["onpage"] = "profile"
     if  session["view_dz1"] == "":
-        session["view_dz1"] = True
+        session["view_dz1"] = view_dz1
     if session["view_dz2"] == "":
-        session["view_dz2"] = True
+        session["view_dz2"] = view_dz2
     if session["view_dz3"] == "":
-        session["view_dz3"] = True
+        session["view_dz3"] = view_dz3
     if session["view_dz4"] == "":
-        session["view_dz4"] = True
+        session["view_dz4"] = view_dz4
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
     if not "user" in session:
         session["sign_in"] = False
         session["logged"] = False
@@ -355,14 +445,23 @@ def user_profile(user):
 
 @app.route("/profile/edit", methods= ["POST","GET"])
 def edit_profile():
+    global view_dz1
+    global view_dz2
+    global view_dz3
+    global view_dz4
+    session["onpage"] = "edit_profile"
     if  session["view_dz1"] == "":
-        session["view_dz1"] = True
+        session["view_dz1"] = view_dz1
     if session["view_dz2"] == "":
-        session["view_dz2"] = True
+        session["view_dz2"] = view_dz2
     if session["view_dz3"] == "":
-        session["view_dz3"] = True
+        session["view_dz3"] = view_dz3
     if session["view_dz4"] == "":
-        session["view_dz4"] = True
+        session["view_dz4"] = view_dz4
+    if not "color" in session:
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
     if not "user" in session:
         session["sign_in"] = False
         session["logged"] = False
@@ -387,6 +486,18 @@ def edit_profile():
         user.biography = biography
         db.session.commit()
     return render_template("edit_profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session)
+
+@app.route("/color/<page>")
+def colorchanger(page):
+    if session["color"] == "White":
+        session["txtcolor"] = "LightGray"
+        session["bgcolor"] = "#404040"
+        session["color"] = "Black"
+    elif session["color"] == "Black":
+        session["txtcolor"] = "black"
+        session["bgcolor"] = "white"
+        session["color"] = "White"
+    return redirect(url_for(page))
 
 @app.route("/profile/logout")
 def logout():
