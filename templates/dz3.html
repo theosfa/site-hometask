@@ -1,10 +1,105 @@
 {% extends "base.html" %}
 {% block title %}{{session["dz1"]}}{% endblock %}
 {% block content %}
-<h1>{{session["dz3"]}} page</h1>
-<form method="post">
-  <label for="enter_dz">{{session["dz3"]}}</label>
-  <input type="text" name="dz1" id="enter_dz">
-  <button type="submit" name="button">Submit</button>
+<div class="text-center" >
+
+<style media="screen">
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: -1px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color:
+#495057;
+background-color:
+#fff;
+background-clip: padding-box;
+border: 1px solid
+    #ced4da;
+    border-radius: .25rem;
+        border-bottom-right-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+button, input {
+    overflow: visible;
+}
+.text-center {
+    text-align: center !important;
+}
+.form-signin .checkbox {
+    font-weight: 400;
+}
+.mb-3, .my-3 {
+    margin-top: -5px;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+.text-center {
+    text-align: center !important;
+}
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+button, input {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+.text-muted {
+    color:
+    #6c757d !important;
+}
+.mt-5, .my-5 {
+    margin-top: 1rem !important;
+}
+#passwdHelp{
+  color: red !important;
+  margin-top:3px;
+}
+
+</style>
+
+<form class="form-signin" method="post">
+  <img class="mb-4" src="{{url_for("static", filename="images/navbar_icon.jpg")}}" alt="" width="72" height="72" style="border-radius:15px">
+  <h1 class="h3 mb-3 font-weight-normal"> Home task for {{session["dz3"]}}</h1>
+  <textarea cols="79" rows="3" class="form-control" name="biography" value="biography" aria-label="With textarea"></textarea>
+  <button type="submit" class="btn btn-lg btn-primary btn-block" style="margin-top:1px">Submit</button>
 </form>
+
+</div>
 {% endblock %}

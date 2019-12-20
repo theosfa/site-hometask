@@ -92,13 +92,13 @@ class lessons(db.Model):
 @app.route("/")
 @app.route("/info-page")
 def index():
-    if not "view_dz1" in session:
+    if  session["view_dz1"] == "":
         session["view_dz1"] = True
-    if not "view_dz2" in session:
+    if session["view_dz2"] == "":
         session["view_dz2"] = True
-    if not "view_dz3" in session:
+    if session["view_dz3"] == "":
         session["view_dz3"] = True
-    if not "view_dz4" in session:
+    if session["view_dz4"] == "":
         session["view_dz4"] = True
     session["dz1"] = "Math"
     session["dz2"] = "Programming"
@@ -158,13 +158,13 @@ def tommorow():
 
 @app.route("/schedule")
 def home():
-    if not "view_dz1" in session:
+    if  session["view_dz1"] == "":
         session["view_dz1"] = True
-    if not "view_dz2" in session:
+    if session["view_dz2"] == "":
         session["view_dz2"] = True
-    if not "view_dz3" in session:
+    if session["view_dz3"] == "":
         session["view_dz3"] = True
-    if not "view_dz4" in session:
+    if session["view_dz4"] == "":
         session["view_dz4"] = True
     if not "user" in session:
         session["sign_in"] = False
@@ -247,6 +247,14 @@ def dz4():
 
 @app.route("/sign_up", methods=["POST", "GET"])
 def sign_up():
+    if  session["view_dz1"] == "":
+        session["view_dz1"] = True
+    if session["view_dz2"] == "":
+        session["view_dz2"] = True
+    if session["view_dz3"] == "":
+        session["view_dz3"] = True
+    if session["view_dz4"] == "":
+        session["view_dz4"] = True
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
@@ -279,6 +287,14 @@ def sign_up():
 
 @app.route("/sign_in", methods=["POST", "GET"])
 def sign_in():
+    if  session["view_dz1"] == "":
+        session["view_dz1"] = True
+    if session["view_dz2"] == "":
+        session["view_dz2"] = True
+    if session["view_dz3"] == "":
+        session["view_dz3"] = True
+    if session["view_dz4"] == "":
+        session["view_dz4"] = True
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
@@ -314,6 +330,14 @@ def sign_in():
 
 @app.route("/profile")
 def profile():
+    if  session["view_dz1"] == "":
+        session["view_dz1"] = True
+    if session["view_dz2"] == "":
+        session["view_dz2"] = True
+    if session["view_dz3"] == "":
+        session["view_dz3"] = True
+    if session["view_dz4"] == "":
+        session["view_dz4"] = True
     if not "user" in session:
         session["sign_in"] = False
         session["logged"] = False
@@ -331,6 +355,14 @@ def user_profile(user):
 
 @app.route("/profile/edit", methods= ["POST","GET"])
 def edit_profile():
+    if  session["view_dz1"] == "":
+        session["view_dz1"] = True
+    if session["view_dz2"] == "":
+        session["view_dz2"] = True
+    if session["view_dz3"] == "":
+        session["view_dz3"] = True
+    if session["view_dz4"] == "":
+        session["view_dz4"] = True
     if not "user" in session:
         session["sign_in"] = False
         session["logged"] = False
