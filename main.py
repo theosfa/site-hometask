@@ -99,13 +99,13 @@ def index():
     global view_dz2
     global view_dz3
     global view_dz4
-    if  session["view_dz1"] == "":
+    if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
-    if session["view_dz2"] == "":
+    if not "view_dz2" in session:
         session["view_dz2"] = view_dz2
-    if session["view_dz3"] == "":
+    if not "view_dz3" in session:
         session["view_dz3"] = view_dz3
-    if session["view_dz4"] == "":
+    if not "view_dz4" in session:
         session["view_dz4"] = view_dz4
     if not "color" in session:
         session["txtcolor"] = "black"
@@ -175,13 +175,13 @@ def home():
     global view_dz3
     global view_dz4
     session["onpage"] = "home"
-    if  session["view_dz1"] == "":
+    if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
-    if session["view_dz2"] == "":
+    if not "view_dz2" in session:
         session["view_dz2"] = view_dz2
-    if session["view_dz3"] == "":
+    if not "view_dz3" in session:
         session["view_dz3"] = view_dz3
-    if session["view_dz4"] == "":
+    if not "view_dz4" in session:
         session["view_dz4"] = view_dz4
     if not "color" in session:
         session["txtcolor"] = "black"
@@ -315,13 +315,13 @@ def sign_up():
     global view_dz3
     global view_dz4
     session["onpage"] = "sign_up"
-    if  session["view_dz1"] == "":
+    if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
-    if session["view_dz2"] == "":
+    if not "view_dz2" in session:
         session["view_dz2"] = view_dz2
-    if session["view_dz3"] == "":
+    if not "view_dz3" in session:
         session["view_dz3"] = view_dz3
-    if session["view_dz4"] == "":
+    if not "view_dz4" in session:
         session["view_dz4"] = view_dz4
     if not "color" in session:
         session["txtcolor"] = "black"
@@ -364,13 +364,13 @@ def sign_in():
     global view_dz3
     global view_dz4
     session["onpage"] = "sign_in"
-    if  session["view_dz1"] == "":
+    if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
-    if session["view_dz2"] == "":
+    if not "view_dz2" in session:
         session["view_dz2"] = view_dz2
-    if session["view_dz3"] == "":
+    if not "view_dz3" in session:
         session["view_dz3"] = view_dz3
-    if session["view_dz4"] == "":
+    if not "view_dz4" in session:
         session["view_dz4"] = view_dz4
     if not "color" in session:
         session["txtcolor"] = "black"
@@ -416,13 +416,13 @@ def profile():
     global view_dz3
     global view_dz4
     session["onpage"] = "profile"
-    if  session["view_dz1"] == "":
+    if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
-    if session["view_dz2"] == "":
+    if not "view_dz2" in session:
         session["view_dz2"] = view_dz2
-    if session["view_dz3"] == "":
+    if not "view_dz3" in session:
         session["view_dz3"] = view_dz3
-    if session["view_dz4"] == "":
+    if not "view_dz4" in session:
         session["view_dz4"] = view_dz4
     if not "color" in session:
         session["txtcolor"] = "black"
@@ -450,13 +450,13 @@ def edit_profile():
     global view_dz3
     global view_dz4
     session["onpage"] = "edit_profile"
-    if  session["view_dz1"] == "":
+    if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
-    if session["view_dz2"] == "":
+    if not "view_dz2" in session:
         session["view_dz2"] = view_dz2
-    if session["view_dz3"] == "":
+    if not "view_dz3" in session:
         session["view_dz3"] = view_dz3
-    if session["view_dz4"] == "":
+    if not "view_dz4" in session:
         session["view_dz4"] = view_dz4
     if not "color" in session:
         session["txtcolor"] = "black"
