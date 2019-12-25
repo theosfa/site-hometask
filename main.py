@@ -4,6 +4,163 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import update
 from init_weeks.weeks import weeks
 import random as rand
+import requests
+import json
+
+url = 'https://journal.bsuir.by/api/v1/studentGroup/schedule?studentGroup=921701'
+
+r = requests.get(url)
+
+def what_today_dz():
+    global subjects_mon
+    global subjects_tue
+    global subjects_wen
+    global subjects_thu
+    global subjects_fri
+    global type_mon
+    global type_tue
+    global type_wen
+    global type_thu
+    global type_fri
+    today_day = datetime.today().weekday()
+    if today_day == 0:
+        session["dz1"] = subjects_mon[0]
+        session["dz2"] = subjects_mon[1]
+        session["dz3"] = subjects_mon[2]
+        session["dz4"] = subjects_mon[3]
+        session["t_dz1"] = type_mon[0]
+        session["t_dz2"] = type_mon[1]
+        session["t_dz3"] = type_mon[2]
+        session["t_dz4"] = type_mon[3]
+    if today_day == 1:
+        session["dz1"] = subjects_tue[0]
+        session["dz2"] = subjects_tue[1]
+        session["dz3"] = subjects_tue[2]
+        session["dz4"] = subjects_tue[3]
+        session["t_dz1"] = type_tue[0]
+        session["t_dz2"] = type_tue[1]
+        session["t_dz3"] = type_tue[2]
+        session["t_dz4"] = type_tue[3]
+    if today_day == 2:
+        session["dz1"] = subjects_wen[0]
+        session["dz2"] = subjects_wen[1]
+        session["dz3"] = subjects_wen[2]
+        session["dz4"] = subjects_wen[3]
+        session["t_dz1"] = type_wen[0]
+        session["t_dz2"] = type_wen[1]
+        session["t_dz3"] = type_wen[2]
+        session["t_dz4"] = type_wen[3]
+    if today_day == 3:
+        session["dz1"] = subjects_thu[0]
+        session["dz2"] = subjects_thu[1]
+        session["dz3"] = subjects_thu[2]
+        session["dz4"] = subjects_thu[3]
+        session["t_dz1"] = type_thu[0]
+        session["t_dz2"] = type_thu[1]
+        session["t_dz3"] = type_thu[2]
+        session["t_dz4"] = type_thu[3]
+    if today_day == 4:
+        session["dz1"] = subjects_fri[0]
+        session["dz2"] = subjects_fri[1]
+        session["dz3"] = subjects_fri[2]
+        session["dz4"] = subjects_fri[3]
+        session["t_dz1"] = type_fri[0]
+        session["t_dz2"] = type_fri[1]
+        session["t_dz3"] = type_fri[2]
+        session["t_dz4"] = type_fri[3]
+    if today_day == 5:
+        session["dz1"] = ""
+        session["dz2"] = ""
+        session["dz3"] = ""
+        session["dz4"] = ""
+        session["t_dz1"] = "ЛК"
+        session["t_dz2"] = "ЛК"
+        session["t_dz3"] = "ЛК"
+        session["t_dz4"] = "ЛК"
+    if today_day == 6:
+        session["dz1"] = ""
+        session["dz2"] = ""
+        session["dz3"] = ""
+        session["dz4"] = ""
+        session["t_dz1"] = "ЛК"
+        session["t_dz2"] = "ЛК"
+        session["t_dz3"] = "ЛК"
+        session["t_dz4"] = "ЛК"
+
+# print(r.json())
+
+
+weekNumber = 1
+subGroup = 1
+subjects_mon = ["","","",""]
+type_mon = ["","","",""]
+subjects_tue = ["","","",""]
+type_tue = ["","","",""]
+subjects_wen = ["","","",""]
+type_wen = ["","","",""]
+subjects_thu = ["","","",""]
+type_thu = ["","","",""]
+subjects_fri = ["","","",""]
+type_fri = ["","","",""]
+numsub = 0
+for i in r.json()["schedules"]:
+    if i["weekDay"] == "Понедельник":
+        for j in i["schedule"]:
+            for n in j["weekNumber"]:
+                if n == weekNumber:
+                    if j["numSubgroup"] == subGroup or j["numSubgroup"] == 0:
+                        if j["subject"] == subjects_mon[numsub-1] and j["lessonType"] == type_mon[numsub-1]:
+                            numsub = numsub - 1
+                        subjects_mon[numsub] = j["subject"]
+                        type_mon[numsub] = j["lessonType"]
+                        numsub = numsub + 1
+    numsub = 0
+    if i["weekDay"] == "Вторник":
+        for j in i["schedule"]:
+            for n in j["weekNumber"]:
+                if n == weekNumber:
+                    if j["numSubgroup"] == subGroup or j["numSubgroup"] == 0:
+                        if j["subject"] == subjects_tue[numsub-1] and j["lessonType"] == type_tue[numsub-1]:
+                            numsub = numsub - 1
+                        subjects_tue[numsub] = j["subject"]
+                        type_tue[numsub] = j["lessonType"]
+                        numsub = numsub + 1
+    numsub = 0
+    if i["weekDay"] == "Среда":
+        for j in i["schedule"]:
+            for n in j["weekNumber"]:
+                if n == weekNumber:
+                    if j["numSubgroup"] == subGroup or j["numSubgroup"] == 0:
+                        if j["subject"] == subjects_wen[numsub-1] and j["lessonType"] == type_wen[numsub-1]:
+                            numsub = numsub - 1
+                        subjects_wen[numsub] = j["subject"]
+                        type_wen[numsub] = j["lessonType"]
+                        numsub = numsub + 1
+    numsub = 0
+    if i["weekDay"] == "Четверг":
+        for j in i["schedule"]:
+            for n in j["weekNumber"]:
+                if n == weekNumber:
+                    if j["numSubgroup"] == subGroup or j["numSubgroup"] == 0:
+                        if j["subject"] == subjects_thu[numsub-1] and j["lessonType"] == type_thu[numsub-1]:
+                            numsub = numsub - 1
+                        subjects_thu[numsub] = j["subject"]
+                        type_thu[numsub] = j["lessonType"]
+                        numsub = numsub + 1
+    numsub = 0
+    if i["weekDay"] == "Пятница":
+        for j in i["schedule"]:
+            for n in j["weekNumber"]:
+                if n == weekNumber:
+                    if j["numSubgroup"] == subGroup or j["numSubgroup"] == 0:
+                        if j["subject"] == subjects_fri[numsub-1] and j["lessonType"] == type_fri[numsub-1]:
+                            numsub = numsub - 1
+                        subjects_fri[numsub] = j["subject"]
+                        type_fri[numsub] = j["lessonType"]
+                        numsub = numsub + 1
+    numsub = 0
+
+
 
 app = Flask(__name__)
 app.register_blueprint(weeks,url_prefix="/init")
@@ -99,6 +256,11 @@ def index():
     global view_dz2
     global view_dz3
     global view_dz4
+    global subjects_mon
+    global subjects_tue
+    global subjects_wen
+    global subjects_thu
+    global subjects_fri
     if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
     if not "view_dz2" in session:
@@ -112,10 +274,6 @@ def index():
         session["bgcolor"] = "white"
         session["color"] = "White"
     session["onpage"] = "index"
-    session["dz1"] = "Math"
-    session["dz2"] = "Programming"
-    session["dz3"] = "History"
-    session["dz4"] = "Geometry"
     if not "user" in session:
         session["sign_in"] = False
         session["user"] = "no_user"
@@ -174,6 +332,12 @@ def home():
     global view_dz2
     global view_dz3
     global view_dz4
+    global subjects_mon
+    global subjects_tue
+    global subjects_wen
+    global subjects_thu
+    global subjects_fri
+    what_today_dz()
     session["onpage"] = "home"
     if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
@@ -206,7 +370,7 @@ def home():
         session["view_dz2"] = view_dz2
         session["view_dz3"] = view_dz3
         session["view_dz4"] = view_dz4
-    return render_template("schedule.html", session = session)
+    return render_template("schedule.html", session = session, type_mon = type_mon, type_tue = type_tue, type_wen = type_wen, type_thu = type_thu, type_fri = type_fri, mon = subjects_mon, tue = subjects_tue, wen = subjects_wen, thu = subjects_thu, fri = subjects_fri,)
 
 @app.route("/home-edit", methods=["post","get"])
 def features():
@@ -241,14 +405,10 @@ def dz1():
         session["bgcolor"] = "white"
         session["color"] = "White"
     session["view_dz1"] = view_dz1
-    session["dz1"] = "Math"
-    session["dz2"] = "Programming"
-    session["dz3"] = "History"
-    session["dz4"] = "Geometry"
     if request.method == "POST":
         view_dz1 = False
         session["view_dz1"] = view_dz1
-        return redirect(url_for("index"))
+        return redirect(url_for("home"))
     return render_template("dz1.html",session = session)
 
 @app.route("/dz2", methods=["POST","GET"])
@@ -260,14 +420,10 @@ def dz2():
         session["bgcolor"] = "white"
         session["color"] = "White"
     session["view_dz2"] = view_dz2
-    session["dz1"] = "Math"
-    session["dz2"] = "Programming"
-    session["dz3"] = "History"
-    session["dz4"] = "Geometry"
     if request.method == "POST":
         view_dz2 = False
         session["view_dz2"] = view_dz2
-        return redirect(url_for("index"))
+        return redirect(url_for("home"))
     return render_template("dz2.html",session = session)
 
 @app.route("/dz3", methods=["POST","GET"])
@@ -279,14 +435,10 @@ def dz3():
         session["bgcolor"] = "white"
         session["color"] = "White"
     session["view_dz3"] = view_dz3
-    session["dz1"] = "Math"
-    session["dz2"] = "Programming"
-    session["dz3"] = "History"
-    session["dz4"] = "Geometry"
     if request.method == "POST":
         view_dz3 = False
         session["view_dz3"] = view_dz3
-        return redirect(url_for("index"))
+        return redirect(url_for("home"))
     return render_template("dz3.html",session = session)
 
 @app.route("/dz4", methods=["POST","GET"])
@@ -298,14 +450,10 @@ def dz4():
         session["txtcolor"] = "black"
         session["bgcolor"] = "white"
         session["color"] = "White"
-    session["dz1"] = "Math"
-    session["dz2"] = "Programming"
-    session["dz3"] = "History"
-    session["dz4"] = "Geometry"
     if request.method == "POST":
         view_dz4 = False
         session["view_dz4"] = view_dz4
-        return redirect(url_for("index"))
+        return redirect(url_for("home"))
     return render_template("dz4.html",session = session)
 
 @app.route("/sign_up", methods=["POST", "GET"])

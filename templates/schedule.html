@@ -1,7 +1,163 @@
 {% extends "base.html" %}
-{% block title %}Schedule page{% endblock %}
+{% block title %}Schedule{% endblock %}
 {% block content %}
-<h1>Schedule page</h1>
+<style>
+    .text-right {
+        float: right;
+    }
+
+    .text-left {
+        float: left;
+    }
+
+    .card-header .alert {
+        margin: -5px;
+        padding: 0.2rem 1.0rem;
+    }
+
+    .card-deck {
+        margin: 2.5%;
+    }
+</style>
+<div class="card-deck">
+    <div class="card {% if session["color"] == "White" %}bg-light{% endif %}{% if session["color"] == "Black" %}bg-dark{% endif %} mb-3" style="max-width: 18rem;">
+        <div class="card-header">
+            <p class="alert text-left">Понедельник</p>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+              {% if mon[0] != "" %}
+                <li class="list-group-item list-group-item-{% if type_mon[0] == "ЛК" %}success{% endif %}{% if type_mon[0] == "ПЗ" %}info{% endif %}{% if type_mon[0] == "ЛР" %}secondary{% endif %}">
+                    8.15-9.35<br><b>{{mon[0]}}</b>
+                </li>
+              {% endif %}
+              {% if mon[1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_mon[1] == "ЛК" %}success{% endif %}{% if type_mon[1] == "ПЗ" %}info{% endif %}{% if type_mon[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{mon[1]}}</b>
+                </li>
+                {% endif %}
+                {% if mon[2] != "" %}
+                <li class="list-group-item list-group-item-{% if type_mon[2] == "ЛК" %}success{% endif %}{% if type_mon[2] == "ПЗ" %}info{% endif %}{% if type_mon[2] == "ЛР" %}secondary{% endif %}">
+                    11.15-12.35 <br><b>{{mon[2]}}</b>
+                </li>
+                {% endif %}
+                {% if mon[3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_mon[3] == "ЛК" %}success{% endif %}{% if type_mon[3] == "ПЗ" %}info{% endif %}{% if type_mon[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{mon[3]}}</b>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every card on sm--></div>
+    <div class="card {% if session["color"] == "White" %}bg-light{% endif %}{% if session["color"] == "Black" %}bg-dark{% endif %} mb-3" style="max-width: 18rem;">
+        <div class="card-header">Вторник</div>
+        <div class="card-body">
+            <ul class="list-group">
+              {% if tue[0] != "" %}
+                <li class="list-group-item list-group-item-{% if type_tue[0] == "ЛК" %}success{% endif %}{% if type_tue[0] == "ПЗ" %}info{% endif %}{% if type_tue[0] == "ЛР" %}secondary{% endif %}">
+                    8.15-9.35<br><b>{{tue[0]}}</b>
+                </li>
+              {% endif %}
+              {% if tue[1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_tue[1] == "ЛК" %}success{% endif %}{% if type_tue[1] == "ПЗ" %}info{% endif %}{% if type_tue[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{tue[1]}}</b>
+                </li>
+                {% endif %}
+                {% if tue[2] != "" %}
+                <li class="list-group-item list-group-item-{% if type_tue[2] == "ЛК" %}success{% endif %}{% if type_tue[2] == "ПЗ" %}info{% endif %}{% if type_tue[2] == "ЛР" %}secondary{% endif %}">
+                    11.15-12.35 <br><b>{{tue[2]}}</b>
+                </li>
+                {% endif %}
+                {% if tue[3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_tue[3] == "ЛК" %}success{% endif %}{% if type_tue[3] == "ПЗ" %}info{% endif %}{% if type_tue[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{tue[3]}}</b>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every card on sm--></div>
+    <div class="card {% if session["color"] == "White" %}bg-light{% endif %}{% if session["color"] == "Black" %}bg-dark{% endif %} mb-3" style="max-width: 18rem;">
+        <div class="card-header">Среда</div>
+        <div class="card-body">
+            <ul class="list-group">
+              {% if wen[0] != "" %}
+                <li class="list-group-item list-group-item-{% if type_wen[0] == "ЛК" %}success{% endif %}{% if type_wen[0] == "ПЗ" %}info{% endif %}{% if type_wen[0] == "ЛР" %}secondary{% endif %}">
+                    8.15-9.35<br><b>{{wen[0]}}</b>
+                </li>
+              {% endif %}
+              {% if wen[1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_wen[1] == "ЛК" %}success{% endif %}{% if type_wen[1] == "ПЗ" %}info{% endif %}{% if type_wen[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{wen[1]}}</b>
+                </li>
+                {% endif %}
+                {% if wen[2] != "" %}
+                <li class="list-group-item list-group-item-{% if type_wen[2] == "ЛК" %}success{% endif %}{% if type_wen[2] == "ПЗ" %}info{% endif %}{% if type_wen[2] == "ЛР" %}secondary{% endif %}">
+                    11.15-12.35 <br><b>{{wen[2]}}</b>
+                </li>
+                {% endif %}
+                {% if wen[3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_wen[3] == "ЛК" %}success{% endif %}{% if type_wen[3] == "ПЗ" %}info{% endif %}{% if type_wen[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{wen[3]}}</b>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every card on sm--></div>
+    <div class="w-100 d-none d-lg-block d-md-block d-xl-none"><!-- wrap every 3 on lg and md--></div>
+    <div class="card {% if session["color"] == "White" %}bg-light{% endif %}{% if session["color"] == "Black" %}bg-dark{% endif %} mb-3" style="max-width: 18rem;">
+        <div class="card-header">
+            <p class="alert text-left">Четверг</p>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+              {% if thu[0] != "" %}
+                <li class="list-group-item list-group-item-{% if type_thu[0] == "ЛК" %}success{% endif %}{% if type_thu[0] == "ПЗ" %}info{% endif %}{% if type_thu[0] == "ЛР" %}secondary{% endif %}">
+                    8.15-9.35<br><b>{{thu[0]}}</b>
+                </li>
+              {% endif %}
+              {% if thu[1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_thu[1] == "ЛК" %}success{% endif %}{% if type_thu[1] == "ПЗ" %}info{% endif %}{% if type_thu[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{thu[1]}}</b>
+                </li>
+                {% endif %}
+                {% if thu[2] != "" %}
+                <li class="list-group-item list-group-item-{% if type_thu[2] == "ЛК" %}success{% endif %}{% if type_thu[2] == "ПЗ" %}info{% endif %}{% if type_thu[2] == "ЛР" %}secondary{% endif %}">
+                    11.15-12.35 <br><b>{{thu[2]}}</b>
+                </li>
+                {% endif %}
+                {% if thu[3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_thu[3] == "ЛК" %}success{% endif %}{% if type_thu[3] == "ПЗ" %}info{% endif %}{% if type_thu[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{thu[3]}}</b>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every card on sm--></div>
+    <div class="card {% if session["color"] == "White" %}bg-light{% endif %}{% if session["color"] == "Black" %}bg-dark{% endif %} mb-3" style="max-width: 18rem;">
+        <div class="card-header">
+            <p class="alert text-left">Пятница</p>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+              {% if fri[0] != "" %}
+                <li class="list-group-item list-group-item-{% if type_fri[0] == "ЛК" %}success{% endif %}{% if type_fri[0] == "ПЗ" %}info{% endif %}{% if type_fri[0] == "ЛР" %}secondary{% endif %}">
+                    8.15-9.35<br><b>{{fri[0]}}</b>
+                </li>
+              {% endif %}
+              {% if fri[1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_fri[1] == "ЛК" %}success{% endif %}{% if type_fri[1] == "ПЗ" %}info{% endif %}{% if type_fri[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{fri[1]}}</b>
+                </li>
+                {% endif %}
+                {% if fri[2] != "" %}
+                <li class="list-group-item list-group-item-{% if type_fri[2] == "ЛК" %}success{% endif %}{% if type_fri[2] == "ПЗ" %}info{% endif %}{% if type_fri[2] == "ЛР" %}secondary{% endif %}">
+                    11.15-12.35 <br><b>{{fri[2]}}</b>
+                </li>
+                {% endif %}
+                {% if fri[3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_fri[3] == "ЛК" %}success{% endif %}{% if type_fri[3] == "ПЗ" %}info{% endif %}{% if type_fri[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{fri[3]}}</b>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+
 <form method="post">
   <button type="submit" name="button">Refresh dz pages</button>
 </form>

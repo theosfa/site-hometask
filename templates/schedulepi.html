@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% block title %}Schedule{% endblock %}
+{% block content %}
+<style>
+    .text-right {
+        float: right;
+    }
+
+    .text-left {
+        float: left;
+    }
+
+    .card-header .alert {
+        margin: -5px;
+        padding: 0.2rem 1.0rem;
+    }
+
+    .card-deck {
+        margin: 2.5%;
+    }
+</style>
+<div class="card-deck">
+    <div class="card mb-3" style="max-width: 18rem;">
+        <div class="card-header">
+            <p class="alert text-left">Понедельник</p>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-info">
+                    8.15-9.35<br><b>{{session["dz1"]}}</b>
+                </li>
+                <li class="list-group-item list-group-item-info">11.15-12.35<br><b>{{session["dz2"]}}</b><br>
+                    Мартыненко И.М. <span class="text-right">607</span>
+                </li>
+                <li class="list-group-item list-group-item-info">
+                    11.15-12.35 <br><b>{{session["dz3"]}}</b>
+                </li>
+                <li class="list-group-item list-group-item-secondary">13.00-14.20<br><b>Программирование</b><br>
+                    <span class="text-right">300-б</span>
+                    Орешко И.Г.<br>
+                    Мацкевич В.В.
+                    <div class="alert alert-secondary" role="alert">
+                        <a href="https://drive.google.com/drive/folders/16JHxDqjZaTDrZh7lXvY6ZHC8S-GnCEu1">Лабы</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every card on sm--></div>
+    <div class="card mb-3" style="max-width: 18rem;">
+        <div class="card-header">Вторник</div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-success">
+                    8.15-9.35<br>
+                </li>
+                <li class="list-group-item list-group-item-secondary">
+                    9.45-11.05<br><b>ДМиМЛ</b><br>
+                    Васильков Д.М. <span class="text-right">256</span>
+                    Шепелева В.Д. <span class="text-right">255-а</span>
+                    <div class="alert alert-danger">
+                        Зачёт
+                    </div>
+                </li>
+                <li class="list-group-item list-group-item-secondary">
+                    11.15-12.35<br><b>ДМиМЛ</b><br>
+                    Васильков Д.М. <span class="text-right">256</span><br>
+                    Шепелева В.Д. <span class="text-right">600-в</span>
+                </li>
+                <li class="list-group-item list-group-item-secondary">
+                    13.00-14.20<br><b>Математический анализ</b><br>
+                    Денисенко В.М. <span class="text-right">250</span>
+                    <div class="alert alert-danger">
+                        Зачёт
+                    </div>
+                </li>
+                <li class="list-group-item list-group-item-secondary">
+                    14.30-15.50<br><b>Математический анализ</b><br>
+                    Денисенко В.М. <span class="text-right">250</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every card on sm--></div>
+    <div class="card mb-3" style="max-width: 18rem;">
+        <div class="card-header">Среда</div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-success">
+                    8.15-9.35
+                </li>
+                <li class="list-group-item list-group-item-success">
+                    9.45-11.05
+                </li>
+                <li class="list-group-item list-group-item-success">11.15-12.35<br>
+                </li>
+                <li class="list-group-item list-group-item-success">
+                    13.00-14.20
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every card on sm--></div>
+    <div class="w-100 d-none d-lg-block d-md-block d-xl-none"><!-- wrap every 3 on lg and md--></div>
+    <div class="card mb-3" style="max-width: 18rem;">
+        <div class="card-header">
+            <p class="alert text-left">Четверг</p>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-success">8.15-9.35</li>
+                <li class="list-group-item list-group-item-secondary">9.45-11.05<br><b>УП</b><br>
+                    <span class="text-right">314</span>
+                    Орешко И.Г.<br>
+                    Мацкевич В.В.
+                </li>
+                <li class="list-group-item list-group-item-secondary">11.15-12.35<br><b>Программирование</b>
+                    <span class="text-right">314</span>
+                    Орешко И.Г.<br>
+                    Мацкевич В.В.
+                </li>
+                <li class="list-group-item list-group-item-info">13.00-14.20<br><b>АГ</b><br>
+                    Матвеев Г.В. <span class="text-right">607</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every card on sm--></div>
+    <div class="card mb-3" style="max-width: 18rem;">
+        <div class="card-header">
+            <p class="alert text-left">Пятница</p>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-success">
+                    8.15-9.35
+                </li>
+                <li class="list-group-item list-group-item-secondary">
+                    9.45-11.05<br><b>АГ</b><br>
+                    Комраков Б.Б. <span class="text-right">234</span>
+                    <div class="alert alert-danger">
+                        Зачёт
+                    </div>
+                </li>
+                <li class="list-group-item list-group-item-info">11.15-12.35<br><b>АиТЧ</b><br>
+                    Матвеев Г.В. <span class="text-right">605</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="card-deck">
+    <div class="list-group" style="max-width: 35rem;">
+        <a class="list-group-item list-group-item-danger list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Пересдача зачета у Комракова</h5>
+                <small>20.12.2019</small>
+            </div>
+            <p class="mb-1">Пересдача зачета у Комракова пройдет <b>в субботу 28.12</b> 11:00</p>
+        </a>
+        <a class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">График сдачи экзаменов</h5>
+                <small class="text-muted">Давно</small>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-warning">
+                    <table class="table table-borderless">
+                        <tr>
+                            <td>Матан</td>
+                            <td><b>04</b>.01</td>
+                        </tr>
+                        <tr>
+                            <td class="alert alert-warning" colspan="2">
+                                <a href="http://ix.io/23o1">Вопросы к экзамену</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>АГ</td>
+                            <td><b>09</b>.01</td>
+                        </tr>
+                        <tr>
+                            <td>ДМиМЛ</td>
+                            <td><b>13</b>.01</td>
+                        </tr>
+                        <tr>
+                            <td>История</td>
+                            <td><b>17</b>.01</td>
+                        </tr>
+                        <tr>
+                            <td>Прога</td>
+                            <td><b>21</b>.01</td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </a>
+    </div>
+    <div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every card on sm--></div>
+    <div class="card mb-3" style="max-width: 20rem;">
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-success">
+                    Полезное<br>
+                    <a href="https://t.me/pi1110">Телеграм</a><br>
+                    <a href="https://bit.ly/pi_14">Гугл диск</a>
+                </li>
+                <a class="btn btn-success btn-lg" href="singup.html" role="button">Очередь на прогу</a>
+            </ul>
+        </div>
+        <div class="card-footer">
+            неделя <b>23.12.27.12</b>
+            <div class="text-right">
+                <a class="text-secondary" href="https://gitlab.com/gera-univ/site/pi14-schedule/issues/1">pdf</a>
+                <a class="text-secondary" href="https://gitlab.com/gera-univ/site/pi14-schedule">git</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

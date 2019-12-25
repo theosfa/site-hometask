@@ -1,1 +1,6 @@
-print(len("Hi, my name is Fedor. I live in Minsk. I'm 17 years old.aasdfasdfasdfasfasdfasd"))
+1
+3
+4
+7
+9
+10

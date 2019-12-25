@@ -96,9 +96,9 @@ button, input, optgroup, select, textarea {
 
 <form class="form-signin" method="post">
   <img class="mb-4" src="{{url_for("static", filename="images/navbar_icon.jpg")}}" alt="" width="72" height="72" style="border-radius:15px">
-  <h1 class="h3 mb-3 font-weight-normal"> Home task for {{session["dz1"]}}</h1>
-  <textarea cols="79" rows="3" class="form-control" name="biography" value="biography" aria-label="With textarea"></textarea>
-  <button type="submit" class="btn btn-lg btn-primary btn-block" style="margin-top:1px">Submit</button>
+  <h1 class="h3 mb-3 font-weight-normal"> Домашка по {{session["dz1"]}}</h1>
+  <textarea cols="79" rows="3" class="form-control {% if session["color"] == "White" %}bg-light{% endif %}{% if session["color"] == "Black" %}bg-dark{% endif %}" name="biography" value="biography" aria-label="With textarea" style="color:{{session["txtcolor"]}}"></textarea>
+  <button type="submit" class="btn btn-lg btn-primary btn-block" style="margin-top:1px">Добавить</button>
 </form>
 
 </div>
