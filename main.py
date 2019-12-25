@@ -22,6 +22,10 @@ def what_today_dz():
     global type_wen
     global type_thu
     global type_fri
+    global view_dz1
+    global view_dz2
+    global view_dz3
+    global view_dz4
     today_day = datetime.today().weekday()
     if today_day == 0:
         session["dz1"] = subjects_mon[0]
@@ -86,6 +90,14 @@ def what_today_dz():
         session["t_dz2"] = "ЛК"
         session["t_dz3"] = "ЛК"
         session["t_dz4"] = "ЛК"
+    if session["t_dz1"] == "ЛК":
+        view_dz1 = False
+    if session["t_dz2"] == "ЛК":
+        view_dz2 = False
+    if session["t_dz3"] == "ЛК":
+        view_dz3 = False
+    if session["t_dz4"] == "ЛК":
+        view_dz4 = False
 
 # print(r.json())
 
@@ -256,19 +268,15 @@ def index():
     global view_dz2
     global view_dz3
     global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     global subjects_mon
     global subjects_tue
     global subjects_wen
     global subjects_thu
     global subjects_fri
-    if  not "view_dz1" in session:
-        session["view_dz1"] = view_dz1
-    if not "view_dz2" in session:
-        session["view_dz2"] = view_dz2
-    if not "view_dz3" in session:
-        session["view_dz3"] = view_dz3
-    if not "view_dz4" in session:
-        session["view_dz4"] = view_dz4
     if not "color" in session:
         session["txtcolor"] = "black"
         session["bgcolor"] = "white"
@@ -284,7 +292,7 @@ def index():
     session["sign_url"] = "sign_in"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the main page"
-    return render_template("index.html", session = session)
+    return render_template("index.html", session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/users")
 def all_users():
@@ -332,6 +340,10 @@ def home():
     global view_dz2
     global view_dz3
     global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     global subjects_mon
     global subjects_tue
     global subjects_wen
@@ -370,7 +382,7 @@ def home():
         session["view_dz2"] = view_dz2
         session["view_dz3"] = view_dz3
         session["view_dz4"] = view_dz4
-    return render_template("schedule.html", session = session, type_mon = type_mon, type_tue = type_tue, type_wen = type_wen, type_thu = type_thu, type_fri = type_fri, mon = subjects_mon, tue = subjects_tue, wen = subjects_wen, thu = subjects_thu, fri = subjects_fri,)
+    return render_template("schedule.html", session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4, type_mon = type_mon, type_tue = type_tue, type_wen = type_wen, type_thu = type_thu, type_fri = type_fri, mon = subjects_mon, tue = subjects_tue, wen = subjects_wen, thu = subjects_thu, fri = subjects_fri,)
 
 @app.route("/home-edit", methods=["post","get"])
 def features():
@@ -399,6 +411,13 @@ def features():
 @app.route("/dz1", methods=["POST","GET"])
 def dz1():
     global view_dz1
+    global view_dz2
+    global view_dz3
+    global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     session["onpage"] = "dz1"
     if not "color" in session:
         session["txtcolor"] = "black"
@@ -409,11 +428,18 @@ def dz1():
         view_dz1 = False
         session["view_dz1"] = view_dz1
         return redirect(url_for("home"))
-    return render_template("dz1.html",session = session)
+    return render_template("dz1.html",session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/dz2", methods=["POST","GET"])
 def dz2():
+    global view_dz1
     global view_dz2
+    global view_dz3
+    global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     session["onpage"] = "dz2"
     if not "color" in session:
         session["txtcolor"] = "black"
@@ -424,11 +450,18 @@ def dz2():
         view_dz2 = False
         session["view_dz2"] = view_dz2
         return redirect(url_for("home"))
-    return render_template("dz2.html",session = session)
+    return render_template("dz2.html",session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/dz3", methods=["POST","GET"])
 def dz3():
+    global view_dz1
+    global view_dz2
     global view_dz3
+    global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     session["onpage"] = "dz3"
     if not "color" in session:
         session["txtcolor"] = "black"
@@ -439,11 +472,18 @@ def dz3():
         view_dz3 = False
         session["view_dz3"] = view_dz3
         return redirect(url_for("home"))
-    return render_template("dz3.html",session = session)
+    return render_template("dz3.html",session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/dz4", methods=["POST","GET"])
 def dz4():
+    global view_dz1
+    global view_dz2
+    global view_dz3
     global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     session["onpage"] = "dz4"
     session["view_dz4"] = view_dz4
     if not "color" in session:
@@ -454,7 +494,7 @@ def dz4():
         view_dz4 = False
         session["view_dz4"] = view_dz4
         return redirect(url_for("home"))
-    return render_template("dz4.html",session = session)
+    return render_template("dz4.html",session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/sign_up", methods=["POST", "GET"])
 def sign_up():
@@ -462,6 +502,10 @@ def sign_up():
     global view_dz2
     global view_dz3
     global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     session["onpage"] = "sign_up"
     if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
@@ -496,14 +540,14 @@ def sign_up():
         found_user = users.query.filter_by(user=user).first()
         if found_user:
             session["sign_up_margin"] = "0px"
-            return render_template("sign_up.html",sign_up = False, session = session)
+            return render_template("sign_up.html",sign_up = False, session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
         usr = users(user, passwd, email, name, surname, biography)
         db.session.add(usr)
         db.session.commit()
         session["user"] = user
         session["logged"] = True
         return redirect(url_for("profile"))
-    return render_template("sign_up.html", sign_up = True, session = session)
+    return render_template("sign_up.html", sign_up = True, session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/sign_in", methods=["POST", "GET"])
 def sign_in():
@@ -511,6 +555,10 @@ def sign_in():
     global view_dz2
     global view_dz3
     global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     session["onpage"] = "sign_in"
     if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
@@ -552,10 +600,10 @@ def sign_in():
         else:
             session["sign_in"] = False
         if not session["sign_in"]:
-            return render_template("sign_in.html", session = session)
+            return render_template("sign_in.html", session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
             session["sign_in"] = True
     session["sign_in"] = True
-    return render_template("sign_in.html", session = session)
+    return render_template("sign_in.html", session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/profile")
 def profile():
@@ -563,6 +611,10 @@ def profile():
     global view_dz2
     global view_dz3
     global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     session["onpage"] = "profile"
     if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
@@ -585,11 +637,11 @@ def profile():
     session["act_log"] = "active"
     session["sign"] = "Sign in"
     session["page_info"] = "You are on the profile page"
-    return render_template("profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session)
+    return render_template("profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/profile/<user>")
 def user_profile(user):
-    return render_template("user-profile.html", values = users.query.filter_by(user=user).first(), session = session)
+    return render_template("user-profile.html", values = users.query.filter_by(user=user).first(), session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/profile/edit", methods= ["POST","GET"])
 def edit_profile():
@@ -597,6 +649,10 @@ def edit_profile():
     global view_dz2
     global view_dz3
     global view_dz4
+    session["view_dz1"] = view_dz1
+    session["view_dz2"] = view_dz2
+    session["view_dz3"] = view_dz3
+    session["view_dz4"] = view_dz4
     session["onpage"] = "edit_profile"
     if  not "view_dz1" in session:
         session["view_dz1"] = view_dz1
@@ -633,7 +689,7 @@ def edit_profile():
         user.email = email
         user.biography = biography
         db.session.commit()
-    return render_template("edit_profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session)
+    return render_template("edit_profile.html", values = users.query.filter_by(user=session["user"]).first(), session = session, view1 = view_dz1, view2 = view_dz2, view3 = view_dz3, view4 = view_dz4)
 
 @app.route("/color/<page>")
 def colorchanger(page):

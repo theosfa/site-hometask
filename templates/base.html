@@ -17,22 +17,22 @@
           <li class="nav-item">
             <a class="nav-link {{session["act_home"]}}" href="/schedule">Schedule <span class="sr-only">(current)</span></a>
           </li>
-          {% if session["view_dz1"] or session["view_dz2"] or session["view_dz3"] or session["view_dz4"] %}
+          {% if view1 or view2 or view3 or view4 %}
           <li class="nav-item dropdown navbar-dark bg-dark">
             <a class="nav-link dropdown-toggle  navbar-dark bg-dark" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Edite home task
             </a>
             <div class="dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdown">
-              {% if session["view_dz1"] %}
+              {% if view1 %}
               <a class="dropdown-item navbar-dark bg-dark" href="/dz1" style="color:white">{{session["dz1"]}}</a>
               {% endif %}
-              {% if session["view_dz2"] %}
+              {% if view2 %}
               <a class="dropdown-item navbar-dark bg-dark" href="/dz2" style="color:white">{{session["dz2"]}}</a>
               {% endif %}
-              {% if session["view_dz3"] %}
+              {% if view3 %}
               <a class="dropdown-item navbar-dark bg-dark" href="/dz3" style="color:white">{{session["dz3"]}}</a>
               {% endif %}
-              {% if session["view_dz4"] %}
+              {% if view4 %}
               <a class="dropdown-item navbar-dark bg-dark" href="/dz4" style="color:white">{{session["dz4"]}}</a>
               {% endif %}
             </div>
