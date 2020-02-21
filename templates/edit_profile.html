@@ -10,6 +10,9 @@
 .box{
   /* border:1px solid red; */
   position:absolute;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .top{
@@ -28,12 +31,19 @@ top:0;
   width: 300px;
   left: 0;
   text-align: justify;
+
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .left{
 left:0;
 height:300px;
 width:300px;
+display: flex;
+justify-content: flex-start;
+flex-direction: column;
 }
 .profile-info{
 right:0;
@@ -47,6 +57,7 @@ width: 70%;
   margin-left: 10%;
 }
 </style>
+
 <div id="container" class="box">
   <div class="box top left">
     <img src="{{url_for("static", filename="images/navbar_icon.jpg")}}" width=100%>
@@ -94,6 +105,5 @@ width: 70%;
   </form>
   </div>
 </div>
-
 
 {% endblock %}

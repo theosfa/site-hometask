@@ -26,22 +26,29 @@
         </div>
         <div class="card-body">
             <ul class="list-group">
-              {% if mon[0] != "" %}
+              {% if subjects["mon"][0] != "" %}
                 <li class="list-group-item list-group-item-{% if type_mon[0] == "ЛК" %}success{% endif %}{% if type_mon[0] == "ПЗ" %}info{% endif %}{% if type_mon[0] == "ЛР" %}secondary{% endif %}">
-                    8.15-9.35<br><b>{{mon[0]}}</b>
+                    8.00-9.35<br><b>{{subjects["mon"][0]}}</b><br>{{auditories["mon"][0][0]}}<br>{{employees["mon"][0]}}
                 </li>
               {% endif %}
-              {% if mon[1] != "" %}
-                <li class="list-group-item list-group-item-{% if type_mon[1] == "ЛК" %}success{% endif %}{% if type_mon[1] == "ПЗ" %}info{% endif %}{% if type_mon[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{mon[1]}}</b>
+              {% if subjects["mon"][1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_mon[1] == "ЛК" %}success{% endif %}{% if type_mon[1] == "ПЗ" %}info{% endif %}{% if type_mon[1] == "ЛР" %}secondary{% endif %}">
+                  11.15-12.35<br><b>{{subjects["mon"][1]}}</b><br>{{auditories["mon"][1][0]}}<br>{{employees["mon"][1]}}
                 </li>
                 {% endif %}
-                {% if mon[2] != "" %}
+                {% if subjects["mon"][2] != "" %}
                 <li class="list-group-item list-group-item-{% if type_mon[2] == "ЛК" %}success{% endif %}{% if type_mon[2] == "ПЗ" %}info{% endif %}{% if type_mon[2] == "ЛР" %}secondary{% endif %}">
-                    11.15-12.35 <br><b>{{mon[2]}}</b>
+                    11.15-12.35 <br><b>{{subjects["mon"][2]}}</b><br>{{auditories["mon"][2][0]}}<br>{{employees["mon"][2]}}
                 </li>
                 {% endif %}
-                {% if mon[3] != "" %}
-                <li class="list-group-item list-group-item-{% if type_mon[3] == "ЛК" %}success{% endif %}{% if type_mon[3] == "ПЗ" %}info{% endif %}{% if type_mon[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{mon[3]}}</b>
+                {% if subjects["mon"][3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_mon[3] == "ЛК" %}success{% endif %}{% if type_mon[3] == "ПЗ" %}info{% endif %}{% if type_mon[3] == "ЛР" %}secondary{% endif %}">
+                  13.00-14.20<br><b>{{subjects["mon"][3]}}</b><br>{{auditories["mon"][3][0]}}<br>{{employees["mon"][3]}}
+                </li>
+                {% endif %}
+                {% if subjects["mon"][4] != "" %}
+                <li class="list-group-item list-group-item-{% if type_mon[4] == "ЛК" %}success{% endif %}{% if type_mon[4] == "ПЗ" %}info{% endif %}{% if type_mon[4] == "ЛР" %}secondary{% endif %}">
+                    11.15-12.35 <br><b>{{subjects["mon"][4]}}</b><br>{{auditories["mon"][4][0]}}<br>{{employees["mon"][4]}}
                 </li>
                 {% endif %}
             </ul>
@@ -52,22 +59,29 @@
         <div class="card-header">Вторник</div>
         <div class="card-body">
             <ul class="list-group">
-              {% if tue[0] != "" %}
+              {% if subjects["tue"][0] != "" %}
                 <li class="list-group-item list-group-item-{% if type_tue[0] == "ЛК" %}success{% endif %}{% if type_tue[0] == "ПЗ" %}info{% endif %}{% if type_tue[0] == "ЛР" %}secondary{% endif %}">
-                    8.15-9.35<br><b>{{tue[0]}}</b>
+                    8.00-9.35<br><b>{{subjects["tue"][0]}}</b><br>{{auditories["tue"][0][0]}}<br>{{employees["tue"][0]}}
                 </li>
               {% endif %}
-              {% if tue[1] != "" %}
-                <li class="list-group-item list-group-item-{% if type_tue[1] == "ЛК" %}success{% endif %}{% if type_tue[1] == "ПЗ" %}info{% endif %}{% if type_tue[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{tue[1]}}</b>
+              {% if subjects["tue"][1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_tue[1] == "ЛК" %}success{% endif %}{% if type_tue[1] == "ПЗ" %}info{% endif %}{% if type_tue[1] == "ЛР" %}secondary{% endif %}">
+                  11.15-12.35<br><b>{{subjects["tue"][1]}}</b><br>{{auditories["tue"][1][0]}}<br>{{employees["tue"][1]}}
                 </li>
                 {% endif %}
-                {% if tue[2] != "" %}
+                {% if subjects["tue"][2] != "" %}
                 <li class="list-group-item list-group-item-{% if type_tue[2] == "ЛК" %}success{% endif %}{% if type_tue[2] == "ПЗ" %}info{% endif %}{% if type_tue[2] == "ЛР" %}secondary{% endif %}">
-                    11.15-12.35 <br><b>{{tue[2]}}</b>
+                    11.15-12.35 <br><b>{{subjects["tue"][2]}}</b><br>{{auditories["tue"][2][0]}}<br>{{employees["tue"][2]}}
                 </li>
                 {% endif %}
-                {% if tue[3] != "" %}
-                <li class="list-group-item list-group-item-{% if type_tue[3] == "ЛК" %}success{% endif %}{% if type_tue[3] == "ПЗ" %}info{% endif %}{% if type_tue[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{tue[3]}}</b>
+                {% if subjects["tue"][3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_tue[3] == "ЛК" %}success{% endif %}{% if type_tue[3] == "ПЗ" %}info{% endif %}{% if type_tue[3] == "ЛР" %}secondary{% endif %}">
+                  13.00-14.20<br><b>{{subjects["tue"][3]}}</b><br>{{auditories["tue"][3][0]}}<br>{{employees["tue"][3]}}
+                </li>
+                {% endif %}
+                {% if subjects["tue"][4] != "" %}
+                <li class="list-group-item list-group-item-{% if type_tue[4] == "ЛК" %}success{% endif %}{% if type_tue[4] == "ПЗ" %}info{% endif %}{% if type_tue[4] == "ЛР" %}secondary{% endif %}">
+                    11.15-12.35 <br><b>{{subjects["tue"][4]}}</b><br>{{auditories["tue"][4][0]}}<br>{{employees["tue"][4]}}
                 </li>
                 {% endif %}
             </ul>
@@ -78,22 +92,29 @@
         <div class="card-header">Среда</div>
         <div class="card-body">
             <ul class="list-group">
-              {% if wen[0] != "" %}
+              {% if subjects["wen"][0] != "" %}
                 <li class="list-group-item list-group-item-{% if type_wen[0] == "ЛК" %}success{% endif %}{% if type_wen[0] == "ПЗ" %}info{% endif %}{% if type_wen[0] == "ЛР" %}secondary{% endif %}">
-                    8.15-9.35<br><b>{{wen[0]}}</b>
+                    8.00-9.35<br><b>{{subjects["wen"][0]}}</b><br>{{auditories["wen"][0][0]}}<br>{{employees["wen"][0]}}
                 </li>
               {% endif %}
-              {% if wen[1] != "" %}
-                <li class="list-group-item list-group-item-{% if type_wen[1] == "ЛК" %}success{% endif %}{% if type_wen[1] == "ПЗ" %}info{% endif %}{% if type_wen[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{wen[1]}}</b>
+              {% if subjects["wen"][1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_wen[1] == "ЛК" %}success{% endif %}{% if type_wen[1] == "ПЗ" %}info{% endif %}{% if type_wen[1] == "ЛР" %}secondary{% endif %}">
+                  11.15-12.35<br><b>{{subjects["wen"][1]}}</b><br>{{auditories["wen"][1][0]}}<br>{{employees["wen"][1]}}
                 </li>
                 {% endif %}
-                {% if wen[2] != "" %}
+                {% if subjects["wen"][2] != "" %}
                 <li class="list-group-item list-group-item-{% if type_wen[2] == "ЛК" %}success{% endif %}{% if type_wen[2] == "ПЗ" %}info{% endif %}{% if type_wen[2] == "ЛР" %}secondary{% endif %}">
-                    11.15-12.35 <br><b>{{wen[2]}}</b>
+                    11.15-12.35 <br><b>{{subjects["wen"][2]}}</b><br>{{auditories["wen"][2][0]}}<br>{{employees["wen"][2]}}
                 </li>
                 {% endif %}
-                {% if wen[3] != "" %}
-                <li class="list-group-item list-group-item-{% if type_wen[3] == "ЛК" %}success{% endif %}{% if type_wen[3] == "ПЗ" %}info{% endif %}{% if type_wen[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{wen[3]}}</b>
+                {% if subjects["wen"][3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_wen[3] == "ЛК" %}success{% endif %}{% if type_wen[3] == "ПЗ" %}info{% endif %}{% if type_wen[3] == "ЛР" %}secondary{% endif %}">
+                  13.00-14.20<br><b>{{subjects["wen"][3]}}</b><br>{{auditories["wen"][3][0]}}<br>{{employees["wen"][3]}}
+                </li>
+                {% endif %}
+                {% if subjects["wen"][4] != "" %}
+                <li class="list-group-item list-group-item-{% if type_wen[4] == "ЛК" %}success{% endif %}{% if type_wen[4] == "ПЗ" %}info{% endif %}{% if type_wen[4] == "ЛР" %}secondary{% endif %}">
+                  13.00-14.20<br><b>{{subjects["wen"][4]}}</b><br>{{auditories["wen"][4][0]}}<br>{{employees["wen"][4]}}
                 </li>
                 {% endif %}
             </ul>
@@ -107,22 +128,29 @@
         </div>
         <div class="card-body">
             <ul class="list-group">
-              {% if thu[0] != "" %}
+              {% if subjects["thu"][0] != "" %}
                 <li class="list-group-item list-group-item-{% if type_thu[0] == "ЛК" %}success{% endif %}{% if type_thu[0] == "ПЗ" %}info{% endif %}{% if type_thu[0] == "ЛР" %}secondary{% endif %}">
-                    8.15-9.35<br><b>{{thu[0]}}</b>
+                    8.00-9.35<br><b>{{subjects["thu"][0]}}</b><br>{{auditories["thu"][0][0]}}<br>{{employees["thu"][0]}}
                 </li>
               {% endif %}
-              {% if thu[1] != "" %}
-                <li class="list-group-item list-group-item-{% if type_thu[1] == "ЛК" %}success{% endif %}{% if type_thu[1] == "ПЗ" %}info{% endif %}{% if type_thu[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{thu[1]}}</b>
+              {% if subjects["thu"][1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_thu[1] == "ЛК" %}success{% endif %}{% if type_thu[1] == "ПЗ" %}info{% endif %}{% if type_thu[1] == "ЛР" %}secondary{% endif %}">
+                  11.15-12.35<br><b>{{subjects["thu"][1]}}</b><br>{{auditories["thu"][1][0]}}<br>{{employees["thu"][1]}}
                 </li>
                 {% endif %}
-                {% if thu[2] != "" %}
+                {% if subjects["thu"][2] != "" %}
                 <li class="list-group-item list-group-item-{% if type_thu[2] == "ЛК" %}success{% endif %}{% if type_thu[2] == "ПЗ" %}info{% endif %}{% if type_thu[2] == "ЛР" %}secondary{% endif %}">
-                    11.15-12.35 <br><b>{{thu[2]}}</b>
+                    11.15-12.35 <br><b>{{subjects["thu"][2]}}</b><br>{{auditories["thu"][2][0]}}<br>{{employees["thu"][2]}}
                 </li>
                 {% endif %}
-                {% if thu[3] != "" %}
-                <li class="list-group-item list-group-item-{% if type_thu[3] == "ЛК" %}success{% endif %}{% if type_thu[3] == "ПЗ" %}info{% endif %}{% if type_thu[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{thu[3]}}</b>
+                {% if subjects["thu"][3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_thu[3] == "ЛК" %}success{% endif %}{% if type_thu[3] == "ПЗ" %}info{% endif %}{% if type_thu[3] == "ЛР" %}secondary{% endif %}">
+                  13.00-14.20<br><b>{{subjects["thu"][3]}}</b><br>{{auditories["thu"][3][0]}}<br>{{employees["thu"][3]}}
+                </li>
+                {% endif %}
+                {% if subjects["thu"][4] != "" %}
+                <li class="list-group-item list-group-item-{% if type_thu[4] == "ЛК" %}success{% endif %}{% if type_thu[4] == "ПЗ" %}info{% endif %}{% if type_thu[4] == "ЛР" %}secondary{% endif %}">
+                    11.15-12.35 <br><b>{{subjects["thu"][4]}}</b><br>{{auditories["thu"][4][0]}}<br>{{employees["thu"][4]}}
                 </li>
                 {% endif %}
             </ul>
@@ -135,22 +163,29 @@
         </div>
         <div class="card-body">
             <ul class="list-group">
-              {% if fri[0] != "" %}
+              {% if subjects["fri"][0] != "" %}
                 <li class="list-group-item list-group-item-{% if type_fri[0] == "ЛК" %}success{% endif %}{% if type_fri[0] == "ПЗ" %}info{% endif %}{% if type_fri[0] == "ЛР" %}secondary{% endif %}">
-                    8.15-9.35<br><b>{{fri[0]}}</b>
+                    8.00-9.35<br><b>{{subjects["fri"][0]}}</b><br>{{auditories["fri"][0][0]}}<br>{{employees["fri"][0]}}
                 </li>
               {% endif %}
-              {% if fri[1] != "" %}
-                <li class="list-group-item list-group-item-{% if type_fri[1] == "ЛК" %}success{% endif %}{% if type_fri[1] == "ПЗ" %}info{% endif %}{% if type_fri[1] == "ЛР" %}secondary{% endif %}">11.15-12.35<br><b>{{fri[1]}}</b>
+              {% if subjects["fri"][1] != "" %}
+                <li class="list-group-item list-group-item-{% if type_fri[1] == "ЛК" %}success{% endif %}{% if type_fri[1] == "ПЗ" %}info{% endif %}{% if type_fri[1] == "ЛР" %}secondary{% endif %}">
+                  11.15-12.35<br><b>{{subjects["fri"][1]}}</b><br>{{auditories["fri"][1][0]}}<br>{{employees["fri"][1]}}
                 </li>
                 {% endif %}
-                {% if fri[2] != "" %}
+                {% if subjects["fri"][2] != "" %}
                 <li class="list-group-item list-group-item-{% if type_fri[2] == "ЛК" %}success{% endif %}{% if type_fri[2] == "ПЗ" %}info{% endif %}{% if type_fri[2] == "ЛР" %}secondary{% endif %}">
-                    11.15-12.35 <br><b>{{fri[2]}}</b>
+                    11.15-12.35 <br><b>{{subjects["fri"][2]}}</b><br>{{auditories["fri"][2][0]}}<br>{{employees["fri"][2]}}
                 </li>
                 {% endif %}
-                {% if fri[3] != "" %}
-                <li class="list-group-item list-group-item-{% if type_fri[3] == "ЛК" %}success{% endif %}{% if type_fri[3] == "ПЗ" %}info{% endif %}{% if type_fri[3] == "ЛР" %}secondary{% endif %}">13.00-14.20<br><b>{{fri[3]}}</b>
+                {% if subjects["fri"][3] != "" %}
+                <li class="list-group-item list-group-item-{% if type_fri[3] == "ЛК" %}success{% endif %}{% if type_fri[3] == "ПЗ" %}info{% endif %}{% if type_fri[3] == "ЛР" %}secondary{% endif %}">
+                  13.00-14.20<br><b>{{subjects["fri"][3]}}</b><br>{{auditories["fri"][3][0]}}<br>{{employees["fri"][3]}}
+                </li>
+                {% endif %}
+                {% if subjects["fri"][4] != "" %}
+                <li class="list-group-item list-group-item-{% if type_fri[4] == "ЛК" %}success{% endif %}{% if type_fri[4] == "ПЗ" %}info{% endif %}{% if type_fri[4] == "ЛР" %}secondary{% endif %}">
+                    11.15-12.35 <br><b>{{subjects["fri"][4]}}</b><br>{{auditories["fri"][4][0]}}<br>{{employees["fri"][4]}}
                 </li>
                 {% endif %}
             </ul>
